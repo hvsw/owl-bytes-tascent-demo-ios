@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import PopupDialog
 import UIKit
 
-class EventsListViewController: UIViewController, UITableViewDataSource {
+class EventsListViewController: UIViewController, UITableViewDataSource, EventTableViewCellDelegate, UITableViewDelegate {
     
     private let events = [
         Event(name: "Foo Fighters at Madison Square Garden", image: UIImage(named: "ff")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
@@ -37,8 +38,11 @@ class EventsListViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
+    private let api: APIClientProtocol = StubAPI()
+    
     override func viewDidLoad() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
     }
     
@@ -55,10 +59,46 @@ class EventsListViewController: UIViewController, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventTableViewCell else {
             return UITableViewCell()
         }
-        
+        cell.delegate = self
         cell.event = events[indexPath.row]
         
         return cell
+    }
+    
+    // MARK: - EventTableViewCellDelegate
+    func didTapBuyAt(cell: EventTableViewCell) {
+        if let evt = cell.event {
+            // process purchase
+            let title = evt.name
+            let message = "Do you wanna buy the ticket for this event?"
+            let image = evt.image
+            
+            let popup = PopupDialog(title: title, message: message, image: image)
+            let closeButton = CancelButton(title: "NO", action: nil)
+            popup.addButton(closeButton)
+            
+            let openSiteButton = DefaultButton(title: "YES") {
+                debugPrint("Comprando...")
+                self.api.buyTicket(for: evt, completion: { (suc: Bool, error: Error?) in
+                    if suc {
+                        debugPrint("Bought!")
+                    } else {
+                        if error == nil {
+                            debugPrint("No error, but not success")
+                        } else {
+                            debugPrint(error)
+                        }
+                    }
+                })
+            }
+            popup.addButton(openSiteButton)
+            
+            present(popup, animated: true, completion: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
 }

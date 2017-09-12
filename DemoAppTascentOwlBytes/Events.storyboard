@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Events List View Controller-->
+        <!--Events-->
         <scene sceneID="l7Z-Ah-5eX">
             <objects>
                 <viewController id="vhr-Py-hXP" customClass="EventsListViewController" customModule="DemoAppTascentOwlBytes" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F7L-Px-y7E" id="1FK-lm-RrU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="154.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmy-60-iE9" userLabel="Top view">
@@ -82,6 +82,9 @@
                                                             <state key="normal" title="BUY">
                                                                 <color key="titleColor" red="0.24310663339999999" green="0.24315488339999999" blue="0.2431035936" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="didTapBuy:" destination="F7L-Px-y7E" eventType="touchUpInside" id="uru-g3-EUq"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.976352632" green="0.97645848989999995" blue="0.98043638470000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -120,22 +123,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hbu-Nl-LX7" firstAttribute="top" secondItem="HRJ-hL-xok" secondAttribute="bottom" id="HoZ-73-17r"/>
-                            <constraint firstItem="HRJ-hL-xok" firstAttribute="leading" secondItem="NHU-cN-t5H" secondAttribute="leading" id="PQt-m3-Geq"/>
-                            <constraint firstAttribute="trailing" secondItem="HRJ-hL-xok" secondAttribute="trailing" id="QZ7-74-KrR"/>
-                            <constraint firstItem="HRJ-hL-xok" firstAttribute="top" secondItem="n9X-wN-44U" secondAttribute="bottom" id="mdu-zy-JQf"/>
+                            <constraint firstItem="HRJ-hL-xok" firstAttribute="leading" secondItem="NHU-cN-t5H" secondAttribute="leading" id="Cd2-iQ-tSL"/>
+                            <constraint firstItem="HRJ-hL-xok" firstAttribute="top" secondItem="n9X-wN-44U" secondAttribute="bottom" id="QMU-MU-bAM"/>
+                            <constraint firstItem="hbu-Nl-LX7" firstAttribute="top" secondItem="HRJ-hL-xok" secondAttribute="bottom" id="Zmt-Pc-rPt"/>
+                            <constraint firstAttribute="trailing" secondItem="HRJ-hL-xok" secondAttribute="trailing" id="xz0-89-qhE"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Events" image="star" id="cOK-kU-tle"/>
                     <connections>
                         <outlet property="tableView" destination="HRJ-hL-xok" id="qql-eK-Num"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYx-Mg-Vfj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-18.399999999999999" y="152.47376311844079"/>
+            <point key="canvasLocation" x="897" y="151"/>
         </scene>
     </scenes>
     <resources>
+        <image name="star" width="25" height="25"/>
         <image name="tomorrowland" width="1920" height="1080"/>
     </resources>
 </document>

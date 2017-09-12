@@ -9,11 +9,17 @@
 import Foundation
 import UIKit
 
+protocol EventTableViewCellDelegate: class {
+    func didTapBuyAt(cell: EventTableViewCell)
+}
+
 class EventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventPriceLabel: UILabel!
+    
+    weak var delegate: EventTableViewCellDelegate?
     
     var event: Event? = nil {
         didSet {
@@ -35,6 +41,15 @@ class EventTableViewCell: UITableViewCell {
         eventImageView.image = image
         eventNameLabel.text = name
         eventPriceLabel.text = String(format: "$ %.2f", price)
+    }
+    
+    @IBAction func didTapBuy(_ sender: Any) {
+        guard let evt = event else {
+            debugPrint("No event on the cell!")
+            return
+        }
+        
+        delegate?.didTapBuyAt(cell: self)
     }
     
 }

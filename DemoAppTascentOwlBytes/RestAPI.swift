@@ -39,4 +39,10 @@ class RestAPI: APIClientProtocol {
         }
     }
     
+    func buyTicket(for: Event, completion: @escaping BoolErrorBlock) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            completion(true, nil)
+        }
+    }
+    
 }
