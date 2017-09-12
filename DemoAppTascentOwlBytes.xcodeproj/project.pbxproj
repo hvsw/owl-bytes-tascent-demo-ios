@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A7F01F677BF0008570AC /* AppDelegate.swift */; };
+		5263A7F31F677BF0008570AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A7F21F677BF0008570AC /* ViewController.swift */; };
+		5263A7F61F677BF0008570AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F41F677BF0008570AC /* Main.storyboard */; };
+		5263A7F81F677BF0008570AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F71F677BF0008570AC /* Assets.xcassets */; };
+		5263A7FB1F677BF0008570AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */; };
+		5263A8061F677BF0008570AC /* DemoAppTascentOwlBytesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A8051F677BF0008570AC /* DemoAppTascentOwlBytesTests.swift */; };
+		5263A8111F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A8101F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5263A8021F677BF0008570AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5263A7E51F677BF0008570AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5263A7EC1F677BF0008570AC;
+			remoteInfo = DemoAppTascentOwlBytes;
+		};
+		5263A80D1F677BF0008570AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5263A7E51F677BF0008570AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5263A7EC1F677BF0008570AC;
+			remoteInfo = DemoAppTascentOwlBytes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5263A7ED1F677BF0008570AC /* DemoAppTascentOwlBytes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoAppTascentOwlBytes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5263A7F01F677BF0008570AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5263A7F21F677BF0008570AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5263A7F51F677BF0008570AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5263A7F71F677BF0008570AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5263A7FA1F677BF0008570AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5263A7FC1F677BF0008570AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5263A8011F677BF0008570AC /* DemoAppTascentOwlBytesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoAppTascentOwlBytesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5263A8051F677BF0008570AC /* DemoAppTascentOwlBytesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppTascentOwlBytesTests.swift; sourceTree = "<group>"; };
+		5263A8071F677BF0008570AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5263A80C1F677BF0008570AC /* DemoAppTascentOwlBytesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoAppTascentOwlBytesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5263A8101F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppTascentOwlBytesUITests.swift; sourceTree = "<group>"; };
+		5263A8121F677BF0008570AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5263A7EA1F677BF0008570AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5263A7FE1F677BF0008570AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5263A8091F677BF0008570AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5263A7E41F677BF0008570AC = {
+			isa = PBXGroup;
+			children = (
+				5263A7EF1F677BF0008570AC /* DemoAppTascentOwlBytes */,
+				5263A8041F677BF0008570AC /* DemoAppTascentOwlBytesTests */,
+				5263A80F1F677BF0008570AC /* DemoAppTascentOwlBytesUITests */,
+				5263A7EE1F677BF0008570AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5263A7EE1F677BF0008570AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5263A7ED1F677BF0008570AC /* DemoAppTascentOwlBytes.app */,
+				5263A8011F677BF0008570AC /* DemoAppTascentOwlBytesTests.xctest */,
+				5263A80C1F677BF0008570AC /* DemoAppTascentOwlBytesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5263A7EF1F677BF0008570AC /* DemoAppTascentOwlBytes */ = {
+			isa = PBXGroup;
+			children = (
+				5263A7F01F677BF0008570AC /* AppDelegate.swift */,
+				5263A7F21F677BF0008570AC /* ViewController.swift */,
+				5263A7F41F677BF0008570AC /* Main.storyboard */,
+				5263A7F71F677BF0008570AC /* Assets.xcassets */,
+				5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */,
+				5263A7FC1F677BF0008570AC /* Info.plist */,
+			);
+			path = DemoAppTascentOwlBytes;
+			sourceTree = "<group>";
+		};
+		5263A8041F677BF0008570AC /* DemoAppTascentOwlBytesTests */ = {
+			isa = PBXGroup;
+			children = (
+				5263A8051F677BF0008570AC /* DemoAppTascentOwlBytesTests.swift */,
+				5263A8071F677BF0008570AC /* Info.plist */,
+			);
+			path = DemoAppTascentOwlBytesTests;
+			sourceTree = "<group>";
+		};
+		5263A80F1F677BF0008570AC /* DemoAppTascentOwlBytesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5263A8101F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift */,
+				5263A8121F677BF0008570AC /* Info.plist */,
+			);
+			path = DemoAppTascentOwlBytesUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5263A7EC1F677BF0008570AC /* DemoAppTascentOwlBytes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5263A8151F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytes" */;
+			buildPhases = (
+				5263A7E91F677BF0008570AC /* Sources */,
+				5263A7EA1F677BF0008570AC /* Frameworks */,
+				5263A7EB1F677BF0008570AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DemoAppTascentOwlBytes;
+			productName = DemoAppTascentOwlBytes;
+			productReference = 5263A7ED1F677BF0008570AC /* DemoAppTascentOwlBytes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5263A8001F677BF0008570AC /* DemoAppTascentOwlBytesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5263A8181F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytesTests" */;
+			buildPhases = (
+				5263A7FD1F677BF0008570AC /* Sources */,
+				5263A7FE1F677BF0008570AC /* Frameworks */,
+				5263A7FF1F677BF0008570AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5263A8031F677BF0008570AC /* PBXTargetDependency */,
+			);
+			name = DemoAppTascentOwlBytesTests;
+			productName = DemoAppTascentOwlBytesTests;
+			productReference = 5263A8011F677BF0008570AC /* DemoAppTascentOwlBytesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5263A80B1F677BF0008570AC /* DemoAppTascentOwlBytesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5263A81B1F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytesUITests" */;
+			buildPhases = (
+				5263A8081F677BF0008570AC /* Sources */,
+				5263A8091F677BF0008570AC /* Frameworks */,
+				5263A80A1F677BF0008570AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5263A80E1F677BF0008570AC /* PBXTargetDependency */,
+			);
+			name = DemoAppTascentOwlBytesUITests;
+			productName = DemoAppTascentOwlBytesUITests;
+			productReference = 5263A80C1F677BF0008570AC /* DemoAppTascentOwlBytesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5263A7E51F677BF0008570AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = None;
+				TargetAttributes = {
+					5263A7EC1F677BF0008570AC = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					5263A8001F677BF0008570AC = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5263A7EC1F677BF0008570AC;
+					};
+					5263A80B1F677BF0008570AC = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5263A7EC1F677BF0008570AC;
+					};
+				};
+			};
+			buildConfigurationList = 5263A7E81F677BF0008570AC /* Build configuration list for PBXProject "DemoAppTascentOwlBytes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5263A7E41F677BF0008570AC;
+			productRefGroup = 5263A7EE1F677BF0008570AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5263A7EC1F677BF0008570AC /* DemoAppTascentOwlBytes */,
+				5263A8001F677BF0008570AC /* DemoAppTascentOwlBytesTests */,
+				5263A80B1F677BF0008570AC /* DemoAppTascentOwlBytesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5263A7EB1F677BF0008570AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5263A7FB1F677BF0008570AC /* LaunchScreen.storyboard in Resources */,
+				5263A7F81F677BF0008570AC /* Assets.xcassets in Resources */,
+				5263A7F61F677BF0008570AC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5263A7FF1F677BF0008570AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5263A80A1F677BF0008570AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5263A7E91F677BF0008570AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5263A7F31F677BF0008570AC /* ViewController.swift in Sources */,
+				5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5263A7FD1F677BF0008570AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5263A8061F677BF0008570AC /* DemoAppTascentOwlBytesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5263A8081F677BF0008570AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5263A8111F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5263A8031F677BF0008570AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5263A7EC1F677BF0008570AC /* DemoAppTascentOwlBytes */;
+			targetProxy = 5263A8021F677BF0008570AC /* PBXContainerItemProxy */;
+		};
+		5263A80E1F677BF0008570AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5263A7EC1F677BF0008570AC /* DemoAppTascentOwlBytes */;
+			targetProxy = 5263A80D1F677BF0008570AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5263A7F41F677BF0008570AC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5263A7F51F677BF0008570AC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5263A7FA1F677BF0008570AC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5263A8131F677BF0008570AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5263A8141F677BF0008570AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5263A8161F677BF0008570AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DemoAppTascentOwlBytes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5263A8171F677BF0008570AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DemoAppTascentOwlBytes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5263A8191F677BF0008570AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DemoAppTascentOwlBytesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DemoAppTascentOwlBytes.app/DemoAppTascentOwlBytes";
+			};
+			name = Debug;
+		};
+		5263A81A1F677BF0008570AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DemoAppTascentOwlBytesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DemoAppTascentOwlBytes.app/DemoAppTascentOwlBytes";
+			};
+			name = Release;
+		};
+		5263A81C1F677BF0008570AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = DemoAppTascentOwlBytesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = DemoAppTascentOwlBytes;
+			};
+			name = Debug;
+		};
+		5263A81D1F677BF0008570AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = DemoAppTascentOwlBytesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = DemoAppTascentOwlBytes;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5263A7E81F677BF0008570AC /* Build configuration list for PBXProject "DemoAppTascentOwlBytes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5263A8131F677BF0008570AC /* Debug */,
+				5263A8141F677BF0008570AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5263A8151F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5263A8161F677BF0008570AC /* Debug */,
+				5263A8171F677BF0008570AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5263A8181F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5263A8191F677BF0008570AC /* Debug */,
+				5263A81A1F677BF0008570AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5263A81B1F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5263A81C1F677BF0008570AC /* Debug */,
+				5263A81D1F677BF0008570AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5263A7E51F677BF0008570AC /* Project object */;
+}
