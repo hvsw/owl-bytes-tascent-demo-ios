@@ -15,6 +15,8 @@
 		5263A8061F677BF0008570AC /* DemoAppTascentOwlBytesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A8051F677BF0008570AC /* DemoAppTascentOwlBytesTests.swift */; };
 		5263A8111F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A8101F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift */; };
 		5263A81F1F677E56008570AC /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 5263A81E1F677E56008570AC /* Cartfile */; };
+		5263A8231F6780DB008570AC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5263A8211F6780DB008570AC /* Alamofire.framework */; };
+		5263A8241F6780DB008570AC /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5263A8221F6780DB008570AC /* PopupDialog.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		5263A8101F677BF0008570AC /* DemoAppTascentOwlBytesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppTascentOwlBytesUITests.swift; sourceTree = "<group>"; };
 		5263A8121F677BF0008570AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5263A81E1F677E56008570AC /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		5263A8211F6780DB008570AC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		5263A8221F6780DB008570AC /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = Carthage/Build/iOS/PopupDialog.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5263A8231F6780DB008570AC /* Alamofire.framework in Frameworks */,
+				5263A8241F6780DB008570AC /* PopupDialog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +90,7 @@
 				5263A80F1F677BF0008570AC /* DemoAppTascentOwlBytesUITests */,
 				5263A7EE1F677BF0008570AC /* Products */,
 				5263A81E1F677E56008570AC /* Cartfile */,
+				5263A8201F6780DA008570AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +135,15 @@
 			path = DemoAppTascentOwlBytesUITests;
 			sourceTree = "<group>";
 		};
+		5263A8201F6780DA008570AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5263A8211F6780DB008570AC /* Alamofire.framework */,
+				5263A8221F6780DB008570AC /* PopupDialog.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +154,7 @@
 				5263A7E91F677BF0008570AC /* Sources */,
 				5263A7EA1F677BF0008570AC /* Frameworks */,
 				5263A7EB1F677BF0008570AC /* Resources */,
+				5263A8251F6780ED008570AC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -257,6 +274,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5263A8251F6780ED008570AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PopupDialog.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5263A7E91F677BF0008570AC /* Sources */ = {
@@ -416,6 +451,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DemoAppTascentOwlBytes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytes;
@@ -428,6 +467,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DemoAppTascentOwlBytes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytes;
