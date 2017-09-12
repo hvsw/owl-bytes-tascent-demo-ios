@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A7F01F677BF0008570AC /* AppDelegate.swift */; };
-		5263A7F31F677BF0008570AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A7F21F677BF0008570AC /* ViewController.swift */; };
 		5263A7F61F677BF0008570AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F41F677BF0008570AC /* Main.storyboard */; };
 		5263A7F81F677BF0008570AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F71F677BF0008570AC /* Assets.xcassets */; };
 		5263A7FB1F677BF0008570AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */; };
@@ -17,6 +16,7 @@
 		5263A81F1F677E56008570AC /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 5263A81E1F677E56008570AC /* Cartfile */; };
 		5263A8231F6780DB008570AC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5263A8211F6780DB008570AC /* Alamofire.framework */; };
 		5263A8241F6780DB008570AC /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5263A8221F6780DB008570AC /* PopupDialog.framework */; };
+		5263A8291F678980008570AC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5263A8281F678980008570AC /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 /* Begin PBXFileReference section */
 		5263A7ED1F677BF0008570AC /* DemoAppTascentOwlBytes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoAppTascentOwlBytes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5263A7F01F677BF0008570AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5263A7F21F677BF0008570AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5263A7F51F677BF0008570AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5263A7F71F677BF0008570AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5263A7FA1F677BF0008570AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		5263A81E1F677E56008570AC /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5263A8211F6780DB008570AC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5263A8221F6780DB008570AC /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = Carthage/Build/iOS/PopupDialog.framework; sourceTree = "<group>"; };
+		5263A8281F678980008570AC /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +107,8 @@
 		5263A7EF1F677BF0008570AC /* DemoAppTascentOwlBytes */ = {
 			isa = PBXGroup;
 			children = (
+				5263A8271F678962008570AC /* Profile */,
 				5263A7F01F677BF0008570AC /* AppDelegate.swift */,
-				5263A7F21F677BF0008570AC /* ViewController.swift */,
 				5263A7F41F677BF0008570AC /* Main.storyboard */,
 				5263A7F71F677BF0008570AC /* Assets.xcassets */,
 				5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */,
@@ -142,6 +142,14 @@
 				5263A8221F6780DB008570AC /* PopupDialog.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5263A8271F678962008570AC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5263A8281F678980008570AC /* Profile.storyboard */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +262,7 @@
 			files = (
 				5263A7FB1F677BF0008570AC /* LaunchScreen.storyboard in Resources */,
 				5263A7F81F677BF0008570AC /* Assets.xcassets in Resources */,
+				5263A8291F678980008570AC /* Profile.storyboard in Resources */,
 				5263A81F1F677E56008570AC /* Cartfile in Resources */,
 				5263A7F61F677BF0008570AC /* Main.storyboard in Resources */,
 			);
@@ -298,7 +307,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5263A7F31F677BF0008570AC /* ViewController.swift in Sources */,
 				5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
