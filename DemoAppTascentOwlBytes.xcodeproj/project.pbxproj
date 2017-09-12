@@ -20,6 +20,15 @@
 		5263A82B1F678AB0008570AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82A1F678AB0008570AC /* ProfileViewController.swift */; };
 		5263A82E1F678DC3008570AC /* ProfilePictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */; };
 		5263A8301F67995B008570AC /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */; };
+		6259D0111F6787190091E549 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259D0101F6787190091E549 /* APIClient.swift */; };
+		6259D0131F6787980091E549 /* StubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259D0121F6787980091E549 /* StubAPI.swift */; };
+		6259D0151F6787A80091E549 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259D0141F6787A80091E549 /* RestAPI.swift */; };
+		6259D0171F67885F0091E549 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6259D0161F67885F0091E549 /* Events.storyboard */; };
+		6259D01A1F6788940091E549 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259D0191F6788940091E549 /* Event.swift */; };
+		6259D01D1F678BE10091E549 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259D01C1F678BE10091E549 /* EventTableViewCell.swift */; };
+		62FE93391F678DD700950874 /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE93381F678DD700950874 /* EventsListViewController.swift */; };
+		62FE933B1F67938500950874 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE933A1F67938500950874 /* RoundedView.swift */; };
+		62FE933D1F6793AB00950874 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE933C1F6793AB00950874 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +68,15 @@
 		5263A82A1F678AB0008570AC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureTableViewCell.swift; sourceTree = "<group>"; };
 		5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
+		6259D0101F6787190091E549 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		6259D0121F6787980091E549 /* StubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAPI.swift; sourceTree = "<group>"; };
+		6259D0141F6787A80091E549 /* RestAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
+		6259D0161F67885F0091E549 /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
+		6259D0191F6788940091E549 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		6259D01C1F678BE10091E549 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		62FE93381F678DD700950874 /* EventsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
+		62FE933A1F67938500950874 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		62FE933C1F6793AB00950874 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +131,8 @@
 		5263A7EF1F677BF0008570AC /* DemoAppTascentOwlBytes */ = {
 			isa = PBXGroup;
 			children = (
+				6259D01B1F6788EF0091E549 /* EventsList */,
+				6259D0181F6788870091E549 /* Model */,
 				5263A8271F678962008570AC /* Profile */,
 				5263A7F01F677BF0008570AC /* AppDelegate.swift */,
 				5263A7F41F677BF0008570AC /* Main.storyboard */,
@@ -170,6 +190,26 @@
 				5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		6259D0181F6788870091E549 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6259D0191F6788940091E549 /* Event.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6259D01B1F6788EF0091E549 /* EventsList */ = {
+			isa = PBXGroup;
+			children = (
+				6259D0161F67885F0091E549 /* Events.storyboard */,
+				6259D01C1F678BE10091E549 /* EventTableViewCell.swift */,
+				62FE93381F678DD700950874 /* EventsListViewController.swift */,
+				62FE933A1F67938500950874 /* RoundedView.swift */,
+				62FE933C1F6793AB00950874 /* UIView+Extension.swift */,
+			);
+			name = EventsList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,9 +368,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6259D0131F6787980091E549 /* StubAPI.swift in Sources */,
+				62FE93391F678DD700950874 /* EventsListViewController.swift in Sources */,
+				6259D0151F6787A80091E549 /* RestAPI.swift in Sources */,
 				5263A82B1F678AB0008570AC /* ProfileViewController.swift in Sources */,
 				5263A8301F67995B008570AC /* TextEntryTableViewCell.swift in Sources */,
 				5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */,
+				6259D01D1F678BE10091E549 /* EventTableViewCell.swift in Sources */,
+				6259D01A1F6788940091E549 /* Event.swift in Sources */,
+				62FE933B1F67938500950874 /* RoundedView.swift in Sources */,
+				62FE933D1F6793AB00950874 /* UIView+Extension.swift in Sources */,
+				6259D0111F6787190091E549 /* APIClient.swift in Sources */,
 				5263A82E1F678DC3008570AC /* ProfilePictureTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
