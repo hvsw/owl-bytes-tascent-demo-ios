@@ -119,6 +119,9 @@
 				5263A7F71F677BF0008570AC /* Assets.xcassets */,
 				5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */,
 				5263A7FC1F677BF0008570AC /* Info.plist */,
+				6259D0101F6787190091E549 /* APIClient.swift */,
+				6259D0121F6787980091E549 /* StubAPI.swift */,
+				6259D0141F6787A80091E549 /* RestAPI.swift */,
 			);
 			path = DemoAppTascentOwlBytes;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				5263A8291F678980008570AC /* Profile.storyboard in Resources */,
 				5263A81F1F677E56008570AC /* Cartfile in Resources */,
 				5263A7F61F677BF0008570AC /* Main.storyboard in Resources */,
+				6259D0171F67885F0091E549 /* Events.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +584,7 @@
 				5263A8171F677BF0008570AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5263A8181F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytesTests" */ = {
 			isa = XCConfigurationList;
@@ -588,6 +593,7 @@
 				5263A81A1F677BF0008570AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5263A81B1F677BF0008570AC /* Build configuration list for PBXNativeTarget "DemoAppTascentOwlBytesUITests" */ = {
 			isa = XCConfigurationList;
@@ -596,6 +602,7 @@
 				5263A81D1F677BF0008570AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
