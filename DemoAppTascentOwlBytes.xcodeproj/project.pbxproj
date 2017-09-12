@@ -17,6 +17,9 @@
 		5263A8231F6780DB008570AC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5263A8211F6780DB008570AC /* Alamofire.framework */; };
 		5263A8241F6780DB008570AC /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5263A8221F6780DB008570AC /* PopupDialog.framework */; };
 		5263A8291F678980008570AC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5263A8281F678980008570AC /* Profile.storyboard */; };
+		5263A82B1F678AB0008570AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82A1F678AB0008570AC /* ProfileViewController.swift */; };
+		5263A82E1F678DC3008570AC /* ProfilePictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */; };
+		5263A8301F67995B008570AC /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		5263A8211F6780DB008570AC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5263A8221F6780DB008570AC /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = Carthage/Build/iOS/PopupDialog.framework; sourceTree = "<group>"; };
 		5263A8281F678980008570AC /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		5263A82A1F678AB0008570AC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureTableViewCell.swift; sourceTree = "<group>"; };
+		5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +154,19 @@
 			isa = PBXGroup;
 			children = (
 				5263A8281F678980008570AC /* Profile.storyboard */,
+				5263A82A1F678AB0008570AC /* ProfileViewController.swift */,
+				5263A82C1F678D9C008570AC /* TableViewCells */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		5263A82C1F678D9C008570AC /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */,
+				5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +324,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5263A82B1F678AB0008570AC /* ProfileViewController.swift in Sources */,
+				5263A8301F67995B008570AC /* TextEntryTableViewCell.swift in Sources */,
 				5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */,
+				5263A82E1F678DC3008570AC /* ProfilePictureTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

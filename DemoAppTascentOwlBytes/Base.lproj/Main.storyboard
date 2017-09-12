@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Storyboard Reference-->
+        <!--Profile-->
         <scene sceneID="PP4-fK-Mos">
             <objects>
-                <viewControllerPlaceholder id="XvY-Gi-3Wb" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Profile" id="XvY-Gi-3Wb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="VXO-Z1-clq" userLabel="Item"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fvo-FP-bd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
