@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522CF9F11F68B2AD00201F91 /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */; };
+		522CF9F31F68B3EF00201F91 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CF9F21F68B3EF00201F91 /* PaymentMethod.swift */; };
+		522CF9F51F68BE5C00201F91 /* AKMaskField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522CF9F41F68BE5C00201F91 /* AKMaskField.framework */; };
+		522CF9FC1F68C2AA00201F91 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CF9FB1F68C2AA00201F91 /* PaymentMethodViewController.swift */; };
 		5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A7F01F677BF0008570AC /* AppDelegate.swift */; };
 		5263A7F61F677BF0008570AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F41F677BF0008570AC /* Main.storyboard */; };
 		5263A7F81F677BF0008570AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5263A7F71F677BF0008570AC /* Assets.xcassets */; };
@@ -49,6 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
+		522CF9F21F68B3EF00201F91 /* PaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		522CF9F41F68BE5C00201F91 /* AKMaskField.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AKMaskField.framework; path = Carthage/Build/iOS/AKMaskField.framework; sourceTree = "<group>"; };
+		522CF9FB1F68C2AA00201F91 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 		5263A7ED1F677BF0008570AC /* DemoAppTascentOwlBytes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoAppTascentOwlBytes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5263A7F01F677BF0008570AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5263A7F51F677BF0008570AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +94,7 @@
 			files = (
 				5263A8231F6780DB008570AC /* Alamofire.framework in Frameworks */,
 				5263A8241F6780DB008570AC /* PopupDialog.framework in Frameworks */,
+				522CF9F51F68BE5C00201F91 /* AKMaskField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +176,7 @@
 		5263A8201F6780DA008570AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				522CF9F41F68BE5C00201F91 /* AKMaskField.framework */,
 				5263A8211F6780DB008570AC /* Alamofire.framework */,
 				5263A8221F6780DB008570AC /* PopupDialog.framework */,
 			);
@@ -179,6 +189,7 @@
 				5263A8281F678980008570AC /* Profile.storyboard */,
 				5263A82A1F678AB0008570AC /* ProfileViewController.swift */,
 				5263A82C1F678D9C008570AC /* TableViewCells */,
+				522CF9FB1F68C2AA00201F91 /* PaymentMethodViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -188,6 +199,7 @@
 			children = (
 				5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */,
 				5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */,
+				522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -196,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				6259D0191F6788940091E549 /* Event.swift */,
+				522CF9F21F68B3EF00201F91 /* PaymentMethod.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -354,6 +367,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PopupDialog.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AKMaskField.framework",
 			);
 			outputPaths = (
 			);
@@ -371,6 +385,7 @@
 				6259D0131F6787980091E549 /* StubAPI.swift in Sources */,
 				62FE93391F678DD700950874 /* EventsListViewController.swift in Sources */,
 				6259D0151F6787A80091E549 /* RestAPI.swift in Sources */,
+				522CF9F31F68B3EF00201F91 /* PaymentMethod.swift in Sources */,
 				5263A82B1F678AB0008570AC /* ProfileViewController.swift in Sources */,
 				5263A8301F67995B008570AC /* TextEntryTableViewCell.swift in Sources */,
 				5263A7F11F677BF0008570AC /* AppDelegate.swift in Sources */,
@@ -379,6 +394,8 @@
 				62FE933B1F67938500950874 /* RoundedView.swift in Sources */,
 				62FE933D1F6793AB00950874 /* UIView+Extension.swift in Sources */,
 				6259D0111F6787190091E549 /* APIClient.swift in Sources */,
+				522CF9F11F68B2AD00201F91 /* PaymentMethodTableViewCell.swift in Sources */,
+				522CF9FC1F68C2AA00201F91 /* PaymentMethodViewController.swift in Sources */,
 				5263A82E1F678DC3008570AC /* ProfilePictureTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

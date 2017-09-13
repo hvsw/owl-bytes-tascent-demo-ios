@@ -22,17 +22,49 @@ private enum UserDataSection: Int {
 class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    var paymentMethods = [PaymentMethod]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         automaticallyAdjustsScrollViewInsets = false
         title = "Profile"
+        navigationController?.navigationBar.barTintColor = UIColor(red: 38/255, green: 56/255, blue: 66/255, alpha: 100)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+    }
+    
+    fileprivate func didTapNewPaymentMethod() {
+//        let payment = PaymentMethod(brand: "MasterCard", cardholderName: "Pietro", number: "0123456789", expirationDate: "10/20", securityCode: "101")
+//        paymentMethods.append(payment)
+//        performSegue(withIdentifier: "payment_method", sender: nil)
+        
+        let sb = UIStoryboard(name: "Profile", bundle: Bundle.main)
+        guard let vc = sb.instantiateViewController(withIdentifier: "paymentVC") as? PaymentMethodViewController else {return}
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        guard let section = Sections(rawValue: indexPath.section) else {return}
+        switch section {
+        case .picture: return
+        case .userData: return
+        case .paymentMethods:
+            guard paymentMethods.count > indexPath.row else {
+                didTapNewPaymentMethod()
+                return
+            }
+            //didSelectPaymentMethod, nothing to be done, yet
+            return
+        }
     }
 }
 
@@ -61,7 +93,7 @@ extension ProfileViewController: UITableViewDataSource {
         case .userData:
             return UserDataSection.allValues.count
         case .paymentMethods:
-            return 2
+            return paymentMethods.count + 1 //counting the add new method cell
         }
     }
     
@@ -79,7 +111,9 @@ extension ProfileViewController: UITableViewDataSource {
         guard let section = Sections(rawValue: indexPath.section) else {return UITableViewCell()}
         switch section {
         case .picture:
-            return tableView.dequeueReusableCell(withIdentifier: "picture")!
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "picture", for: indexPath) as? ProfilePictureTableViewCell else {return UITableViewCell()}
+            cell.updateUI()
+            return cell
         case .userData:
             guard let cellType = UserDataSection(rawValue: indexPath.row) else {return UITableViewCell()}
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextEntryTableViewCell else {return UITableViewCell()}
@@ -90,11 +124,18 @@ extension ProfileViewController: UITableViewDataSource {
                 cell.caption.text = "Last Name"
             case .dateOfBirth:
                 cell.caption.text = "DOB"
+                cell.textField.keyboardType = .numberPad
                 cell.textField.placeholder = "mm/dd/yyyy"
+                cell.setDOBMask()
             }
             return cell
         case .paymentMethods:
-            return UITableViewCell()
+            guard paymentMethods.count > indexPath.row else {
+                return tableView.dequeueReusableCell(withIdentifier: "new_method", for: indexPath)
+            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "payment_method", for: indexPath) as? PaymentMethodTableViewCell else {return UITableViewCell()}
+            cell.paymentMethod = paymentMethods[indexPath.row]
+            return cell
         }
     }
 }
