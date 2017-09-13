@@ -6,7 +6,9 @@
 //  Copyright © 2017 None. All rights reserved.
 //
 
+import Fusuma
 import UIKit
+import SVProgressHUD
 
 
 private enum Sections: Int {
@@ -21,6 +23,10 @@ private enum UserDataSection: Int {
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+
+    fileprivate let api: APIClientProtocol = StubAPI()
+    
+    var image = UIImage(named: "profile_placeholder")
     
     var paymentMethods = [PaymentMethod]() {
         didSet {
@@ -45,6 +51,25 @@ class ProfileViewController: UIViewController {
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    fileprivate func didTapProfilePicture() {
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        fusumaTintColor = .white
+        fusumaBackgroundColor = .darkGray
+        fusumaBaseTintColor = .lightGray
+        fusuma.cropHeightRatio = 0.6 // Height-to-width ratio. The default value is 1, which means a squared-size photo.
+        fusuma.allowMultipleSelection = true // You can select multiple photos from the camera roll. The default value is false.
+        present(fusuma, animated: true, completion: nil)
+    }
+    
+    fileprivate func setProfilePicture(_ image: UIImage) {
+//        self.image = image
+//        tableView.reloadData()
+        let indexPath = IndexPath(row: 0, section: Sections.picture.rawValue)
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProfilePictureTableViewCell else {return}
+        cell.profileImageView.image = image
+    }
 }
 
 extension ProfileViewController: UITableViewDelegate {
@@ -53,7 +78,7 @@ extension ProfileViewController: UITableViewDelegate {
         guard let section = Sections(rawValue: indexPath.section) else {return}
         switch section {
         case .picture:
-            
+            didTapProfilePicture()
             return
         case .userData: return
         case .paymentMethods:
@@ -147,4 +172,61 @@ extension ProfileViewController: PaymentMethodViewControllerDelegate {
         tableView.reloadData()
         
     }
+}
+
+extension ProfileViewController: FusumaDelegate {
+    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
+        guard let image = images.first, let data = image.data else {
+            SVProgressHUD.showError(withStatus: "Error generating data from image")
+            return
+        }
+        
+        api.qualityCheck(imageData: data) { (suc: Bool, error: Error?) in
+            if error == nil {
+                if suc {
+                    debugPrint("valid image")
+                    self.setProfilePicture(image)
+                } else {
+                    SVProgressHUD.showError(withStatus: "Invalid image")
+                }
+            } else {
+                SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
+            }
+        }
+        
+    }
+    
+    
+    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
+        guard let data = image.data else {
+            return
+        }
+        
+        api.qualityCheck(imageData: data) { (suc: Bool, error: Error?) in
+            if error == nil {
+                if suc {
+                    debugPrint("valid image")
+                    self.setProfilePicture(image)
+                } else {
+                    SVProgressHUD.showError(withStatus: "Invalid image")
+                }
+            } else {
+                SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
+            }
+        }
+    }
+
+    
+    func fusumaDismissedWithImage(_ image: UIImage, source: Fusuma.FusumaMode) {
+        
+    }
+    
+    func fusumaCameraRollUnauthorized() {
+        debugPrint("Not authorized")
+        SVProgressHUD.showError(withStatus: "You must enable camera access in order to use this feature. Please access your settings and enable camera for this app.")
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {}
+    func fusumaClosed() {}
+    func fusumaWillClosed() {}
 }

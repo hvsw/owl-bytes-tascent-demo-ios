@@ -45,6 +45,8 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        view.backgroundColor = UIColor.tascent
+        tableView.backgroundColor = UIColor.clear
     }
     
     // MARK: - UITableViewDataSource
@@ -62,7 +64,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
         }
         cell.delegate = self
         cell.event = events[indexPath.row]
-        
+        cell.backgroundColor = UIColor.tascent
         return cell
     }
     

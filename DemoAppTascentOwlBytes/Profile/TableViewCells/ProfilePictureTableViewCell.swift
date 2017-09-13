@@ -20,6 +20,7 @@ class ProfilePictureTableViewCell: UITableViewCell {
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderWidth = 3
         profileImageView.layer.borderColor = UIColor.tascent.cgColor
+        profileImageView.layer.masksToBounds = true
     }
     
     func updateUI() {
