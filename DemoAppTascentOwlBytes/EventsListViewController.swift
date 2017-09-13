@@ -9,6 +9,7 @@
 import Foundation
 import PopupDialog
 import UIKit
+import UserNotifications
 
 class EventsListViewController: UIViewController, UITableViewDataSource, EventTableViewCellDelegate, UITableViewDelegate {
     
@@ -81,7 +82,16 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
                 debugPrint("Comprando...")
                 self.api.buyTicket(for: evt, completion: { (suc: Bool, error: Error?) in
                     if suc {
-                        debugPrint("Bought!")
+                        let content = UNMutableNotificationContent()
+                        content.title = "Ticket bought for \(evt.name)"
+                        content.body = "Your purchase was completed. \(String(format: "%@ - $ %.2f", evt.name, evt.price))"
+                        
+                        let dateComponents = Date(timeIntervalSinceNow: 5.0).components
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                        let request = UNNotificationRequest(identifier: "TicketBought", content: content, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
+                            debugPrint(error)
+                        })
                     } else {
                         if error == nil {
                             debugPrint("No error, but not success")
@@ -103,14 +113,3 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     
 }
 
-extension Int {
-    static func randomIntFrom(start: Int, to end: Int) -> Int {
-        var a = start
-        var b = end
-        // swap to prevent negative integer crashes
-        if a > b {
-            swap(&a, &b)
-        }
-        return Int(arc4random_uniform(UInt32(b - a + 1))) + a
-    }
-}

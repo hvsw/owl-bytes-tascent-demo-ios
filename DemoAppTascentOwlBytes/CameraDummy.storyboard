@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vsw-EX-7zN">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera View Controller Dummy-->
+        <scene sceneID="76h-v3-52q">
+            <objects>
+                <viewController id="vsw-EX-7zN" customClass="CameraViewControllerDummy" customModule="DemoAppTascentOwlBytes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rbc-M1-by6"/>
+                        <viewControllerLayoutGuide type="bottom" id="tG8-5f-56C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4yd-gJ-iKZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zur-b3-26b">
+                                <rect key="frame" x="141.5" y="318" width="92" height="30"/>
+                                <state key="normal" title="Open camera"/>
+                                <connections>
+                                    <action selector="didTapOpenCamera:" destination="vsw-EX-7zN" eventType="touchUpInside" id="RnU-YV-OQm"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ech-ie-8wW">
+                                <rect key="frame" x="32" y="36" width="311" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="qoj-CC-b34"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ech-ie-8wW" firstAttribute="leading" secondItem="4yd-gJ-iKZ" secondAttribute="leadingMargin" constant="16" id="3Fe-4x-mP6"/>
+                            <constraint firstItem="zur-b3-26b" firstAttribute="centerY" secondItem="4yd-gJ-iKZ" secondAttribute="centerY" id="Xxj-aL-79f"/>
+                            <constraint firstItem="zur-b3-26b" firstAttribute="centerX" secondItem="4yd-gJ-iKZ" secondAttribute="centerX" id="eYz-bm-Rd2"/>
+                            <constraint firstItem="Ech-ie-8wW" firstAttribute="top" secondItem="Rbc-M1-by6" secondAttribute="bottom" constant="16" id="mpt-yp-s9O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ech-ie-8wW" secondAttribute="trailing" constant="16" id="rRv-9J-hGy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Ech-ie-8wW" id="I5Y-pl-wrZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SfU-GE-rsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="174" y="-219"/>
+        </scene>
+    </scenes>
+</document>

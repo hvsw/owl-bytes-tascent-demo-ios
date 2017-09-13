@@ -12,6 +12,6 @@ typealias BoolErrorBlock = (Bool, Error?) -> ()
 
 protocol APIClientProtocol {
     func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock)
-    func enroll(completion: @escaping BoolErrorBlock)
+    func enroll(user: User, completion: @escaping BoolErrorBlock)
     func buyTicket(for: Event, completion: @escaping BoolErrorBlock)
 }
