@@ -141,9 +141,9 @@
 				5263A7EF1F677BF0008570AC /* DemoAppTascentOwlBytes */,
 				5263A8041F677BF0008570AC /* DemoAppTascentOwlBytesTests */,
 				5263A80F1F677BF0008570AC /* DemoAppTascentOwlBytesUITests */,
+				5263A8201F6780DA008570AC /* Frameworks */,
 				5263A7EE1F677BF0008570AC /* Products */,
 				5263A81E1F677E56008570AC /* Cartfile */,
-				5263A8201F6780DA008570AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,22 +160,15 @@
 		5263A7EF1F677BF0008570AC /* DemoAppTascentOwlBytes */ = {
 			isa = PBXGroup;
 			children = (
-				6225C81B1F68CCAB002DA837 /* Utils */,
+				62BA78611F69C82900B00237 /* API */,
+				62BA78621F69C83400B00237 /* Bootstrap */,
+				62BA78641F69C87900B00237 /* Camera dummy */,
 				6259D01B1F6788EF0091E549 /* EventsList */,
 				6259D0181F6788870091E549 /* Model */,
 				5263A8271F678962008570AC /* Profile */,
-				5263A7F01F677BF0008570AC /* AppDelegate.swift */,
+				62BA78631F69C85600B00237 /* Resources */,
+				6225C81B1F68CCAB002DA837 /* Utils */,
 				5263A7F41F677BF0008570AC /* Main.storyboard */,
-				5263A7F71F677BF0008570AC /* Assets.xcassets */,
-				5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */,
-				5263A7FC1F677BF0008570AC /* Info.plist */,
-				6259D0101F6787190091E549 /* APIClient.swift */,
-				6259D0121F6787980091E549 /* StubAPI.swift */,
-				6259D0141F6787A80091E549 /* RestAPI.swift */,
-				6208C9851F68A8F200FCEB2E /* CameraVCDummy.swift */,
-				6208C9871F68A91A00FCEB2E /* CameraDummy.storyboard */,
-				6208C9891F68B66200FCEB2E /* FaceDetector.swift */,
-				522CF9FD1F68DDA200201F91 /* UIColor+Extension.swift */,
 			);
 			path = DemoAppTascentOwlBytes;
 			sourceTree = "<group>";
@@ -213,10 +206,10 @@
 		5263A8271F678962008570AC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				5263A8281F678980008570AC /* Profile.storyboard */,
-				5263A82A1F678AB0008570AC /* ProfileViewController.swift */,
 				5263A82C1F678D9C008570AC /* TableViewCells */,
 				522CF9FB1F68C2AA00201F91 /* PaymentMethodViewController.swift */,
+				5263A8281F678980008570AC /* Profile.storyboard */,
+				5263A82A1F678AB0008570AC /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -224,9 +217,9 @@
 		5263A82C1F678D9C008570AC /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */,
 				5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */,
 				5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */,
-				522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -235,31 +228,77 @@
 			isa = PBXGroup;
 			children = (
 				6225C81C1F68CCBD002DA837 /* Date+Extension.swift */,
+				6208C9891F68B66200FCEB2E /* FaceDetector.swift */,
 				6225C81E1F68CCD0002DA837 /* Int+Extension.swift */,
+				522CF9FD1F68DDA200201F91 /* UIColor+Extension.swift */,
 			);
 			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		6259D0181F6788870091E549 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				6259D0191F6788940091E549 /* Event.swift */,
-				6225C8191F68C2C8002DA837 /* User.swift */,
 				522CF9F21F68B3EF00201F91 /* PaymentMethod.swift */,
+				6225C8191F68C2C8002DA837 /* User.swift */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6259D01B1F6788EF0091E549 /* EventsList */ = {
 			isa = PBXGroup;
 			children = (
-				6259D0161F67885F0091E549 /* Events.storyboard */,
 				6259D01C1F678BE10091E549 /* EventTableViewCell.swift */,
+				6259D0161F67885F0091E549 /* Events.storyboard */,
 				62FE93381F678DD700950874 /* EventsListViewController.swift */,
 				62FE933A1F67938500950874 /* RoundedView.swift */,
 				62FE933C1F6793AB00950874 /* UIView+Extension.swift */,
 			);
 			name = EventsList;
+			path = EventsList;
+			sourceTree = "<group>";
+		};
+		62BA78611F69C82900B00237 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				6259D0101F6787190091E549 /* APIClient.swift */,
+				6259D0141F6787A80091E549 /* RestAPI.swift */,
+				6259D0121F6787980091E549 /* StubAPI.swift */,
+			);
+			name = API;
+			path = API;
+			sourceTree = "<group>";
+		};
+		62BA78621F69C83400B00237 /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				5263A7F01F677BF0008570AC /* AppDelegate.swift */,
+			);
+			name = Bootstrap;
+			path = Bootstrap;
+			sourceTree = "<group>";
+		};
+		62BA78631F69C85600B00237 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5263A7F71F677BF0008570AC /* Assets.xcassets */,
+				5263A7FC1F677BF0008570AC /* Info.plist */,
+				5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		62BA78641F69C87900B00237 /* Camera dummy */ = {
+			isa = PBXGroup;
+			children = (
+				6208C9871F68A91A00FCEB2E /* CameraDummy.storyboard */,
+				6208C9851F68A8F200FCEB2E /* CameraVCDummy.swift */,
+			);
+			name = "Camera dummy";
+			path = "Camera dummy";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,6 +525,7 @@
 				5263A7F51F677BF0008570AC /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5263A7F91F677BF0008570AC /* LaunchScreen.storyboard */ = {
@@ -494,6 +534,7 @@
 				5263A7FA1F677BF0008570AC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -601,7 +642,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = DemoAppTascentOwlBytes/Info.plist;
+				INFOPLIST_FILE = DemoAppTascentOwlBytes/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytes;
@@ -619,7 +660,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = DemoAppTascentOwlBytes/Info.plist;
+				INFOPLIST_FILE = DemoAppTascentOwlBytes/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = None.DemoAppTascentOwlBytes;
