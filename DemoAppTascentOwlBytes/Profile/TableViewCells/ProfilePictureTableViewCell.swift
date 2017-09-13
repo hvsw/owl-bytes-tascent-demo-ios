@@ -15,10 +15,15 @@ class ProfilePictureTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderWidth = 3
+        profileImageView.layer.borderColor = UIColor.tascent.cgColor
     }
     
     func updateUI() {
-        profileImageView.backgroundColor = UIColor.yellow
-        backgroundColor = UIColor.red
+        profileImageView.backgroundColor = UIColor.clear
+        backgroundColor = UIColor.clear
     }
 }

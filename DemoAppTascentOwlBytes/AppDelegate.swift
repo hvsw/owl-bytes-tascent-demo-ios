@@ -18,6 +18,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.gradient)
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted: Bool, error: Error?) in
+            if error == nil {
+                if granted {
+                    SVProgressHUD.showSuccess(withStatus: "Successfully registered to receive notifications!")
+                    UNUserNotificationCenter.current().delegate = self
+                } else {
+                    SVProgressHUD.show(withStatus: "You didn't authorize notification on this device. If you want you can do this later on your device's settings.")
+                }
+            } else {
+                SVProgressHUD.showError(withStatus: "Error getting authorization to use notifications! \nDetails: \(error!)")
+            }
+        }
+        
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         return true
     }

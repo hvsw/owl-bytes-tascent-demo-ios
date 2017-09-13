@@ -43,25 +43,24 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="picture" rowHeight="168" id="1hQ-BZ-jXE" customClass="ProfilePictureTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="168"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="picture" rowHeight="150" id="1hQ-BZ-jXE" customClass="ProfilePictureTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="56" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hQ-BZ-jXE" id="JH7-5w-Dml">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="168"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Lw8-eX-xwl">
-                                                    <rect key="frame" x="114.5" y="11" width="145" height="145"/>
+                                                    <rect key="frame" x="113" y="1" width="148" height="148"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="148" id="Yag-nD-OuP"/>
                                                         <constraint firstAttribute="width" secondItem="Lw8-eX-xwl" secondAttribute="height" multiplier="1:1" id="dtS-Qo-ttF"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Lw8-eX-xwl" secondAttribute="bottom" constant="4" id="0Bh-ua-GrF"/>
                                                 <constraint firstItem="Lw8-eX-xwl" firstAttribute="centerX" secondItem="JH7-5w-Dml" secondAttribute="centerX" id="7Su-ML-iRT"/>
                                                 <constraint firstItem="Lw8-eX-xwl" firstAttribute="centerY" secondItem="JH7-5w-Dml" secondAttribute="centerY" id="E0S-EO-iBH"/>
-                                                <constraint firstItem="Lw8-eX-xwl" firstAttribute="top" secondItem="JH7-5w-Dml" secondAttribute="topMargin" constant="3" id="kPg-EK-2PC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -69,7 +68,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="text" rowHeight="80" id="yv9-2R-e77" customClass="TextEntryTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="224" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="206" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yv9-2R-e77" id="wcd-xs-nDd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -119,7 +118,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="new_method" rowHeight="43" id="goY-w6-ybE">
-                                        <rect key="frame" x="0.0" y="304" width="375" height="43"/>
+                                        <rect key="frame" x="0.0" y="286" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="goY-w6-ybE" id="qau-kb-Oao">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -131,7 +130,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="Z2n-JK-z3g"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="0.09178740531206131" green="0.26728790998458862" blue="0.69531357288360596" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.0067025627940893173" green="0.16756069660186768" blue="0.20992892980575562" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -143,7 +142,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="payment_method" rowHeight="46" id="h75-Eh-ZTu" customClass="PaymentMethodTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="347" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="329" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h75-Eh-ZTu" id="iIU-bA-Lba">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>

@@ -18,6 +18,8 @@ class TextEntryTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        separator.backgroundColor = UIColor.tascent
+        caption.textColor = UIColor.tascent
     }
     
     func setDOBMask() {

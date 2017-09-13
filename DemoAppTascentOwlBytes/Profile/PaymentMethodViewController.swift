@@ -6,6 +6,7 @@
 //  Copyright © 2017 None. All rights reserved.
 //
 
+import AKMaskField
 import UIKit
 
 private enum Sections: Int {
@@ -18,12 +19,17 @@ private enum CardDataSection: Int {
     static let allValues = [CardDataSection.number, .expirationDate, .securityCode]
 }
 
+protocol PaymentMethodViewControllerDelegate: class {
+    func didCreatePaymentMethod(paymentMethodViewController: PaymentMethodViewController, payment: PaymentMethod)
+}
+
 
 class PaymentMethodViewController: UIViewController {
     let brands = ["Master Card", "American Express", "Visa"]
     var selectedBrandIndex = 0
     
     @IBOutlet weak var tableView: UITableView!
+    var delegate: PaymentMethodViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +40,41 @@ class PaymentMethodViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(done))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    @objc fileprivate func done() {
+        guard let payment = getCurrentPaymentMethod() else {
+            //show appropriate error on screen
+            return
+        }
+        //should the payment method and/or the whole user be saved to the server here?
+        delegate?.didCreatePaymentMethod(paymentMethodViewController: self, payment: payment)
+    }
+    
+    fileprivate func getCurrentPaymentMethod() -> PaymentMethod? {
+        let userPath = IndexPath(row: 0, section: Sections.userData.rawValue)
+        guard let userDataCell = tableView.cellForRow(at: userPath) as? TextEntryTableViewCell else {return nil}
+        guard let cardholder = userDataCell.textField.text, cardholder != "" else {return nil}
+        
+        let numberPath = IndexPath(row: CardDataSection.number.rawValue, section: Sections.cardData.rawValue)
+        guard let numberCell = tableView.cellForRow(at: numberPath) as? TextEntryTableViewCell else {return nil}
+        guard let number = numberCell.textField.text, numberCell.textField.maskStatus == AKMaskFieldStatus.complete else {return nil}
+        
+        let expirationPath = IndexPath(row: CardDataSection.expirationDate.rawValue, section: Sections.cardData.rawValue)
+        guard let expirationCell = tableView.cellForRow(at: expirationPath) as? TextEntryTableViewCell else {return nil}
+        guard let expiration = expirationCell.textField.text, expirationCell.textField.maskStatus == AKMaskFieldStatus.complete else {return nil}
+        
+        let cvcPath = IndexPath(row: CardDataSection.securityCode.rawValue, section: Sections.cardData.rawValue)
+        guard let cvcCell = tableView.cellForRow(at: cvcPath) as? TextEntryTableViewCell else {return nil}
+        guard let cvc = cvcCell.textField.text, cvcCell.textField.maskStatus == AKMaskFieldStatus.complete else {return nil}
+        
+        return PaymentMethod(brand: brands[selectedBrandIndex], cardholderName: cardholder, number: number, expirationDate: expiration, securityCode: cvc)
     }
     
     deinit {

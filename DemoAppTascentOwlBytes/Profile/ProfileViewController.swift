@@ -34,18 +34,15 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
         automaticallyAdjustsScrollViewInsets = false
         title = "Profile"
-        navigationController?.navigationBar.barTintColor = UIColor(red: 38/255, green: 56/255, blue: 66/255, alpha: 100)
+        navigationController?.navigationBar.barTintColor = UIColor.tascent
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
     fileprivate func didTapNewPaymentMethod() {
-//        let payment = PaymentMethod(brand: "MasterCard", cardholderName: "Pietro", number: "0123456789", expirationDate: "10/20", securityCode: "101")
-//        paymentMethods.append(payment)
-//        performSegue(withIdentifier: "payment_method", sender: nil)
-        
         let sb = UIStoryboard(name: "Profile", bundle: Bundle.main)
         guard let vc = sb.instantiateViewController(withIdentifier: "paymentVC") as? PaymentMethodViewController else {return}
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -55,7 +52,9 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         guard let section = Sections(rawValue: indexPath.section) else {return}
         switch section {
-        case .picture: return
+        case .picture:
+            
+            return
         case .userData: return
         case .paymentMethods:
             guard paymentMethods.count > indexPath.row else {
@@ -99,7 +98,7 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let defaultHeight: CGFloat = 50
-        let pictureHeight: CGFloat = 110
+        let pictureHeight: CGFloat = 150
         guard let section = Sections(rawValue: indexPath.section) else {return defaultHeight}
         if section == .picture {
            return pictureHeight
@@ -137,5 +136,15 @@ extension ProfileViewController: UITableViewDataSource {
             cell.paymentMethod = paymentMethods[indexPath.row]
             return cell
         }
+    }
+}
+
+extension ProfileViewController: PaymentMethodViewControllerDelegate {
+    
+    func didCreatePaymentMethod(paymentMethodViewController: PaymentMethodViewController, payment: PaymentMethod) {
+        paymentMethods.append(payment)
+        navigationController?.popViewController(animated: true)
+        tableView.reloadData()
+        
     }
 }
