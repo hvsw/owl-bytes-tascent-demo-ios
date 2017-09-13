@@ -1,4 +1,5 @@
 github "Alamofire/Alamofire" ~> 4.5
 github "Orderella/PopupDialog" ~> 0.5
+github "artemkrachulov/AKMaskField"
 github "ytakzk/Fusuma"
 github "SVProgressHUD/SVProgressHUD"

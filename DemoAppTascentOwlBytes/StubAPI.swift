@@ -14,7 +14,7 @@ class StubAPI: APIClientProtocol {
     
     func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            completion(false, nil)
+            completion(true, nil)
         }
     }
     
