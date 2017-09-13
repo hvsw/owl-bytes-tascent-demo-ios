@@ -11,7 +11,7 @@ import UserNotifications
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     
@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if error == nil {
                 if granted {
                     SVProgressHUD.showSuccess(withStatus: "Successfully registered to receive notifications!")
+                    UNUserNotificationCenter.current().delegate = self
                 } else {
                     SVProgressHUD.show(withStatus: "You didn't authorize notification on this device. If you want you can do this later on your device's settings.")
                 }
@@ -33,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
     }
     
 }

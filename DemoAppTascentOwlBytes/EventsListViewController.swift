@@ -85,8 +85,11 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
                         let content = UNMutableNotificationContent()
                         content.title = "Ticket bought for \(evt.name)"
                         content.body = "Your purchase was completed. \(String(format: "%@ - $ %.2f", evt.name, evt.price))"
+                        if let attachment = UNNotificationAttachment.create(identifier: evt.name, image: evt.image, options: nil) {
+                            content.attachments = [attachment]
+                        }
                         
-                        let dateComponents = Date(timeIntervalSinceNow: 5.0).components
+                        let dateComponents = Date(timeIntervalSinceNow: 2.0).components
                         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                         let request = UNNotificationRequest(identifier: "TicketBought", content: content, trigger: trigger)
                         UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
@@ -113,3 +116,26 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     
 }
 
+extension UNNotificationAttachment {
+    
+    static func create(identifier: String, image: UIImage, options: [NSObject : AnyObject]?) -> UNNotificationAttachment? {
+        let fileManager = FileManager.default
+        let tmpSubFolderName = ProcessInfo.processInfo.globallyUniqueString
+        let tmpSubFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(tmpSubFolderName, isDirectory: true)
+        do {
+            try fileManager.createDirectory(at: tmpSubFolderURL, withIntermediateDirectories: true, attributes: nil)
+            let imageFileIdentifier = identifier+".png"
+            let fileURL = tmpSubFolderURL.appendingPathComponent(imageFileIdentifier)
+            guard let imageData = UIImagePNGRepresentation(image) else {
+                return nil
+            }
+            try imageData.write(to: fileURL)
+            let imageAttachment = try UNNotificationAttachment.init(identifier: imageFileIdentifier, url: fileURL, options: options)
+            return imageAttachment
+        } catch {
+            print("error " + error.localizedDescription)
+        }
+        return nil
+    }
+    
+}
