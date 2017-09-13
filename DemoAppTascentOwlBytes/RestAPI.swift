@@ -27,20 +27,22 @@ class RestAPI: APIClientProtocol {
         }
     }
     
+    private let delay = 0.5
+    
     func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             completion(true, nil)
         }
     }
     
-    func enroll(completion: @escaping BoolErrorBlock) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+    func enroll(user: User, completion: @escaping BoolErrorBlock) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             completion(true, nil)
         }
     }
     
     func buyTicket(for: Event, completion: @escaping BoolErrorBlock) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             completion(true, nil)
         }
     }
