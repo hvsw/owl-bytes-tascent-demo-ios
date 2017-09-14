@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted: Bool, error: Error?) in
             if error == nil {
                 if granted {
-                    SVProgressHUD.showSuccess(withStatus: "Successfully registered to receive notifications!")
+                    //SVProgressHUD.showSuccess(withStatus: "Successfully registered to receive notifications!")
                     UNUserNotificationCenter.current().delegate = self
                 } else {
                     SVProgressHUD.show(withStatus: "You didn't authorize notification on this device. If you want you can do this later on your device's settings.")
