@@ -9,3 +9,9 @@
 import Foundation
 
 extension String: Error { }
+
+extension String {
+    var utf8Data: Data? {
+        return data(using: String.Encoding.utf8)
+    }
+}
