@@ -44,7 +44,7 @@ class EventTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapBuy(_ sender: Any) {
-        guard let evt = event else {
+        guard event != nil else {
             debugPrint("No event on the cell!")
             return
         }

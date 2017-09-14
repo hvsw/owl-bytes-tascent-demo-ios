@@ -18,8 +18,8 @@ class ProfilePictureTableViewCell: UITableViewCell {
         
         profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
         profileImageView.clipsToBounds = true
-        profileImageView.layer.borderWidth = 3
-        profileImageView.layer.borderColor = UIColor.tascent.cgColor
+        profileImageView.layer.borderWidth = 2
+        profileImageView.layer.borderColor = UIColor.lightGray.cgColor
         profileImageView.layer.masksToBounds = true
     }
     

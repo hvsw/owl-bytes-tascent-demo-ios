@@ -97,10 +97,3 @@ class CameraViewControllerDummy: UIViewController, FusumaDelegate {
     }
 }
 
-extension UIImage {
-    var data: Data? {
-        return UIImagePNGRepresentation(self)
-    }
-}
-
-extension String: Error { }

@@ -23,7 +23,7 @@ private enum UserDataSection: Int {
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-
+    
     fileprivate let api: APIClientProtocol = StubAPI()
     
     var image = UIImage(named: "profile_placeholder")
@@ -31,6 +31,14 @@ class ProfileViewController: UIViewController {
     var paymentMethods = [PaymentMethod]() {
         didSet {
             tableView.reloadData()
+        }
+    }
+    
+    fileprivate var statusBarHidden: Bool = true {
+        didSet {
+            debugPrint(statusBarHidden)
+            UIApplication.shared.isStatusBarHidden = statusBarHidden
+            setNeedsStatusBarAppearanceUpdate()
         }
     }
     
@@ -56,16 +64,20 @@ class ProfileViewController: UIViewController {
         let fusuma = FusumaViewController()
         fusuma.delegate = self
         fusumaTintColor = .white
-        fusumaBackgroundColor = .darkGray
+        fusumaBackgroundColor = .tascent
         fusumaBaseTintColor = .lightGray
-        fusuma.cropHeightRatio = 0.6 // Height-to-width ratio. The default value is 1, which means a squared-size photo.
-        fusuma.allowMultipleSelection = true // You can select multiple photos from the camera roll. The default value is false.
+        fusuma.availableModes = [.camera, .library]
+        statusBarHidden = true
         present(fusuma, animated: true, completion: nil)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return statusBarHidden
+    }
+    
     fileprivate func setProfilePicture(_ image: UIImage) {
-//        self.image = image
-//        tableView.reloadData()
+        //        self.image = image
+        //        tableView.reloadData()
         let indexPath = IndexPath(row: 0, section: Sections.picture.rawValue)
         guard let cell = tableView.cellForRow(at: indexPath) as? ProfilePictureTableViewCell else {return}
         cell.profileImageView.image = image
@@ -126,7 +138,7 @@ extension ProfileViewController: UITableViewDataSource {
         let pictureHeight: CGFloat = 150
         guard let section = Sections(rawValue: indexPath.section) else {return defaultHeight}
         if section == .picture {
-           return pictureHeight
+            return pictureHeight
         }
         return defaultHeight
     }
@@ -164,8 +176,8 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - PaymentMethodViewControllerDelegate
 extension ProfileViewController: PaymentMethodViewControllerDelegate {
-    
     func didCreatePaymentMethod(paymentMethodViewController: PaymentMethodViewController, payment: PaymentMethod) {
         paymentMethods.append(payment)
         navigationController?.popViewController(animated: true)
@@ -174,8 +186,11 @@ extension ProfileViewController: PaymentMethodViewControllerDelegate {
     }
 }
 
+// MARK: - FusumaDelegate
 extension ProfileViewController: FusumaDelegate {
     func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
+        statusBarHidden = false
+        
         guard let image = images.first, let data = image.data else {
             SVProgressHUD.showError(withStatus: "Error generating data from image")
             return
@@ -193,11 +208,11 @@ extension ProfileViewController: FusumaDelegate {
                 SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
             }
         }
-        
     }
     
-    
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
+        statusBarHidden = false
+        
         guard let data = image.data else {
             return
         }
@@ -215,18 +230,26 @@ extension ProfileViewController: FusumaDelegate {
             }
         }
     }
-
-    
-    func fusumaDismissedWithImage(_ image: UIImage, source: Fusuma.FusumaMode) {
-        
-    }
     
     func fusumaCameraRollUnauthorized() {
         debugPrint("Not authorized")
         SVProgressHUD.showError(withStatus: "You must enable camera access in order to use this feature. Please access your settings and enable camera for this app.")
     }
     
-    func fusumaVideoCompleted(withFileURL fileURL: URL) {}
-    func fusumaClosed() {}
-    func fusumaWillClosed() {}
+    func fusumaClosed() {
+        
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        
+    }
+    
+    func fusumaDismissedWithImage(_ image: UIImage, source: FusumaMode) {
+        
+    }
+    
+    func fusumaWillClosed() {
+        statusBarHidden = false
+    }
+    
 }
