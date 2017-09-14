@@ -23,7 +23,7 @@ private enum UserDataSection: Int {
 class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate let api: APIClientProtocol = StubAPI()
+    fileprivate let api: APIClientProtocol = RestAPI()
     
     var image = UIImage(named: "profile_placeholder")
     
