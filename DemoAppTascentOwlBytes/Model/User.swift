@@ -9,5 +9,13 @@
 import Foundation
 
 struct User {
+    let deviceId: String
+    let firstName: String
+    let lastName: String
     
+    init() {
+        deviceId = ""
+        firstName = ""
+        lastName = ""
+    }
 }

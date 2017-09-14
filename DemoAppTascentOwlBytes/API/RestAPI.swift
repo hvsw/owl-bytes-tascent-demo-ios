@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class RestAPI: APIClientProtocol {
+class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
     
     private enum Endpoint: URLConvertible {
         private struct Authentication {
@@ -56,7 +56,7 @@ class RestAPI: APIClientProtocol {
                 
             case .enroll:
                 headers["Content-Type"] = "application/vnd.tascent-bio.v1+json"
-//                headers["Accept"] = "application/json"
+                //                headers["Accept"] = "application/json"
                 return headers
             }
         }
@@ -79,76 +79,48 @@ class RestAPI: APIClientProtocol {
         let endpoint = Endpoint.enroll
         
         let jsonData = try! Data(contentsOf: Bundle.main.url(forResource: "face", withExtension: "json")!)
-        let json = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+        var json = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+        json["token"] = "526d730f1c804b30a873b4d6efe8ec87"
         
-        Alamofire
-            .request(Endpoint.enroll, method: .post, parameters: json, encoding: JSONEncoding.default, headers: endpoint.headers)
-            .responseJSON { (dataResponse: DataResponse<Any>) in
-                if let response = dataResponse.response {
-                    switch response.statusCode {
+        var request = URLRequest(url: try! endpoint.asURL())
+        request.allHTTPHeaderFields = endpoint.headers
+        request.httpMethod = "POST"
+//        request.httpBody = "{\"key\":\"value\"}".data(using: String.Encoding.utf8)
+        request.httpBody = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+        
+        let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            if let httpResponse = response as? HTTPURLResponse {
+                if error == nil {
+                    switch httpResponse.statusCode {
                     case 200:
-                        debugPrint(dataResponse.result.value ?? "Empty strimg")
+                        do {
+                            if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: String], let token = json["value"] {
+                                AppDefaults.shared.set(token: token, for: user)
+                                completion(true, nil)
+                            } else {
+                                completion(false, "Serialization error")
+                            }
+                        } catch {
+                            completion(false, "Error in JSONSerialization")
+                        }
                         
                     case 400:
-                        debugPrint("BAD REQUEST")
-                        debugPrint("Response: \n\(dataResponse.data?.string ?? "Empty")")
+                        completion(false, "BAD REQUEST\nResponse: \n\(response?.debugDescription ?? "Empty")")
                         
                     default:
-                        debugPrint("Unexpected status code \(response.statusCode)")
-                        debugPrint("Response: \n\(dataResponse.data?.string ?? "Empty")")
+                        completion(false, "Unexpected status code \(httpResponse.statusCode)\nResponse: \n\(response?.debugDescription ?? "Empty")")
                     }
+                    
+                    
                 } else {
-                    debugPrint("No response")
+                    completion(false, error!)
                 }
-        }
-        //            .responseJSON { (response: DataResponse<Any>) in
-        //                if let JSON = response.result.value {
-        //                    print("JSON: \(JSON)") // your JSONResponse result
-        ////                    completionHandler(JSON as! NSDictionary)
-        //                }
-        //                else {
-        //                    print(response.result.error!)
-        //                }
-        //        }
-        return
-        
-        //        curl -u apiuser:aRT98dPogR -k -H "Content-Type: application/vnd.tascent-bio.v1+json" -X POST -d @face.json https://<TIP_IP>:8080/enroll/
-        //        let parms = Parameters?
-        //        let endpoint = Endpoint.enroll
-        let data = Data()
-        
-        Alamofire.upload(data, to: endpoint)
-            .uploadProgress(queue: DispatchQueue.main) { (progress: Progress) in
-                debugPrint("Progress: \(progress.fractionCompleted)")
+            } else {
+                completion(false, "Error casting to HTTPURLResponse")
             }
-            .response { (response: DefaultDataResponse) in
-                debugPrint(response)
         }
-        //            .responseJSON { (response: DataResponse<Any>) in
-        //                if let error = response.error {
-        //                    completion(false, error)
-        //                } else {
-        //                    if let json = response.value as? [String:Any] {
-        //                        debugPrint(json)
-        //                    } else {
-        //                        completion(false, "Error parsing: \(response.value ?? "nil")")
-        //                    }
-        //                }
-        //    }
-        
-        //        Alamofire.request(endpoint,
-        //                          method: .post,
-        //                          parameters: nil,
-        //                          encoding: JSONEncoding.default,
-        //                          headers: endpoint.headers)
-        //            .pro { (progress: Progress) in
-        //                debugPrint(progress)
-        //            }
-        //            .responseJSON { (response: DataResponse<Any>) in
-        //                if let jsonData = response.data, let json = JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) {
-        //                    debugPrint("")
-        //                }
-        //        }
+        task.resume()
     }
     
     func buyTicket(for: Event, completion: @escaping BoolErrorBlock) {
@@ -157,4 +129,28 @@ class RestAPI: APIClientProtocol {
         }
     }
     
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        // Always accepting since the provided url is https but is signed by a unknown authority
+        completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+    }
+    
 }
+
+
+// For Swift 3 and Alamofire 4.0
+open class MyServerTrustPolicyManager: ServerTrustPolicyManager {
+    
+    // Override this function in order to trust any self-signed https
+    open override func serverTrustPolicy(forHost host: String) -> ServerTrustPolicy? {
+        return ServerTrustPolicy.disableEvaluation
+        
+        // or, if `host` contains substring, return `disableEvaluation`
+        // Ex: host contains `my_company.com`, then trust it.
+    }
+}
+
+//extension Dictionary where Key: String, Element: Any {
+//    var jsonData: Data {
+//        return try! JSONSerialization.data(withJSONObject: self, options: JSONSerialization.WritingOptions.prettyPrinted)
+//    }
+//}
