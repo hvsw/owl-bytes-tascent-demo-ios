@@ -31,8 +31,8 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-        view.backgroundColor = UIColor.tascent
         tableView.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor.tascent
         
         automaticallyAdjustsScrollViewInsets = true
         title = "Events"

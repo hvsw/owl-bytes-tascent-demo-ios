@@ -38,7 +38,7 @@ class EventTableViewCell: UITableViewCell {
         
         overlayView.round(.topLeft, radius: 20)
         eventImageView.round(.topLeft, radius: 20)
-        bottomView.round(.bottomRight, radius: 20)
+        bottomView.cornerRadius = 20
     }
     
     private func updateUI() {

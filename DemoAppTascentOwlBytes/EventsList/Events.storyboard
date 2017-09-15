@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F7L-Px-y7E" id="1FK-lm-RrU">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmy-60-iE9" userLabel="Top view">
@@ -96,7 +96,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="0.0"/>
+                                                            <real key="value" value="20"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>

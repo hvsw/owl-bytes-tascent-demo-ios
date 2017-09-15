@@ -16,7 +16,7 @@ class RoundedView: UIView {
     var cornerRadius: CGFloat = 0
     
     @IBInspectable
-    var corners: UIRectCorner = [.bottomLeft, .bottomRight]
+    var corners: UIRectCorner = [.bottomRight]
     
     override func layoutSubviews() {
         super.layoutSubviews()
