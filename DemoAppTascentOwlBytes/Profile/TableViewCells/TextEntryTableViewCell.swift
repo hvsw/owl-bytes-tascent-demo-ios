@@ -20,6 +20,7 @@ class TextEntryTableViewCell: UITableViewCell {
         selectionStyle = .none
         separator.backgroundColor = UIColor.tascent
         caption.textColor = UIColor.tascent
+        textField.autocapitalizationType = .words
     }
     
     func setDOBMask() {
@@ -27,14 +28,17 @@ class TextEntryTableViewCell: UITableViewCell {
     }
     
     func setExpirationDateMask() {
+        textField.keyboardType = .decimalPad
         textField.maskExpression = "{dd}/{dd}"
     }
     
     func setCardNumberMask() {
+        textField.keyboardType = .decimalPad
         textField.maskExpression = "{dddd}-{dddd}-{dddd}-{dddd}"
     }
     
     func setSecurityCodeMask() {
+        textField.keyboardType = .decimalPad
         textField.maskExpression = "{ddd}"
     }
 }

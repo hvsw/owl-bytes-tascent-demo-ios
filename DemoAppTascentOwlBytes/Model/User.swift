@@ -6,12 +6,16 @@
 //  Copyright © 2017 None. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct User {
     let deviceId: String
-    let firstName: String
-    let lastName: String
+    var firstName: String
+    var lastName: String
+    var dateOfBirth: String?
+    var optedInToBiometricPayment: Bool = false
+    var paymentMethods = [PaymentMethod]()
+    var profilePicture: UIImage?
     
     init() {
         deviceId = ""
