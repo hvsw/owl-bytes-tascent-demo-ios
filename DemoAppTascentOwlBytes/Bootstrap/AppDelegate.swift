@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     //SVProgressHUD.showSuccess(withStatus: "Successfully registered to receive notifications!")
                     UNUserNotificationCenter.current().delegate = self
                 } else {
-                    SVProgressHUD.show(withStatus: "You didn't authorize notification on this device. If you want you can do this later on your device's settings.")
+                    SVProgressHUD.showInfo(withStatus: "You didn't authorize notification on this device. If you want you can do this later on your device's settings.")
                 }
             } else {
                 SVProgressHUD.showError(withStatus: "Error getting authorization to use notifications! \nDetails: \(error!)")
