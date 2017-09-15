@@ -10,10 +10,9 @@ import Fusuma
 import UIKit
 import SVProgressHUD
 
-
 private enum Sections: Int {
-    case picture = 0, userData, paymentMethods
-    static let allValues = [Sections.picture, .userData, .paymentMethods]
+    case picture = 0, userData, paymentMethods, biometric
+    static let allValues = [Sections.picture, .userData, .paymentMethods, .biometric]
 }
 
 private enum UserDataSection: Int {
@@ -25,10 +24,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate let api: APIClientProtocol = RestAPI()
+    fileprivate var optedInToBiometricPayment = false {
+        didSet {
+            tableView.reloadSections([Sections.biometric.rawValue], with: .automatic)
+        }
+    }
     
-    var image = UIImage(named: "profile_placeholder")
-    
-    var paymentMethods = [PaymentMethod]() {
+    fileprivate var paymentMethods = [PaymentMethod]() {
         didSet {
             tableView.reloadData()
         }
@@ -76,11 +78,33 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func setProfilePicture(_ image: UIImage) {
-        //        self.image = image
-        //        tableView.reloadData()
         let indexPath = IndexPath(row: 0, section: Sections.picture.rawValue)
         guard let cell = tableView.cellForRow(at: indexPath) as? ProfilePictureTableViewCell else {return}
         cell.profileImageView.image = image
+    }
+    
+    fileprivate func showConsentForBiometricPayment() {
+        let title = "Biometric Payment"
+        let message = "Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. "
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let optOut = UIAlertAction(title: "Opt Out", style: .cancel) { (action) in
+            self.userOptedOutOfBiometricPayment()
+        }
+        let optIn = UIAlertAction(title: "Opt In", style: .default) { (action) in
+            self.userOptedInToBiometricPayment()
+        }
+        alert.addAction(optIn)
+        alert.addAction(optOut)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func userOptedOutOfBiometricPayment() {
+        optedInToBiometricPayment = false
+    }
+    
+    fileprivate func userOptedInToBiometricPayment() {
+        optedInToBiometricPayment = true
     }
 }
 
@@ -100,6 +124,13 @@ extension ProfileViewController: UITableViewDelegate {
             }
             //didSelectPaymentMethod, nothing to be done, yet
             return
+        case .biometric:
+            if optedInToBiometricPayment {
+                userOptedOutOfBiometricPayment()
+            } else {
+                showConsentForBiometricPayment()
+            }
+            return
         }
     }
 }
@@ -114,6 +145,8 @@ extension ProfileViewController: UITableViewDataSource {
             return "User Data"
         case .paymentMethods:
             return "Payment Methods"
+        case .biometric:
+            return "Biometric Payment"
         }
     }
     
@@ -130,6 +163,8 @@ extension ProfileViewController: UITableViewDataSource {
             return UserDataSection.allValues.count
         case .paymentMethods:
             return paymentMethods.count + 1 //counting the add new method cell
+        case .biometric:
+            return 1
         }
     }
     
@@ -172,6 +207,14 @@ extension ProfileViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "payment_method", for: indexPath) as? PaymentMethodTableViewCell else {return UITableViewCell()}
             cell.paymentMethod = paymentMethods[indexPath.row]
             return cell
+        case .biometric:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "biometric_payment", for: indexPath) as? BiometricPaymentTableViewCell else {return UITableViewCell()}
+            
+            let text = optedInToBiometricPayment ? "Tap to opt out" : "Opt In to Biometric Payment"
+            cell.caption.text = text
+            cell.switch.setOn(optedInToBiometricPayment, animated: true)
+            cell.switch.isEnabled = false
+            return cell
         }
     }
 }
@@ -182,7 +225,6 @@ extension ProfileViewController: PaymentMethodViewControllerDelegate {
         paymentMethods.append(payment)
         navigationController?.popViewController(animated: true)
         tableView.reloadData()
-        
     }
 }
 

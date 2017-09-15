@@ -25,6 +25,7 @@
 		5263A82B1F678AB0008570AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82A1F678AB0008570AC /* ProfileViewController.swift */; };
 		5263A82E1F678DC3008570AC /* ProfilePictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */; };
 		5263A8301F67995B008570AC /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */; };
+		5285BAFD1F6B511700569123 /* BiometricPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285BAFC1F6B511700569123 /* BiometricPaymentTableViewCell.swift */; };
 		6208C9841F68A89700FCEB2E /* Fusuma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6208C9831F68A89700FCEB2E /* Fusuma.framework */; };
 		6208C9861F68A8F200FCEB2E /* CameraVCDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6208C9851F68A8F200FCEB2E /* CameraVCDummy.swift */; };
 		6208C9881F68A91A00FCEB2E /* CameraDummy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6208C9871F68A91A00FCEB2E /* CameraDummy.storyboard */; };
@@ -95,6 +96,7 @@
 		5263A82A1F678AB0008570AC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureTableViewCell.swift; sourceTree = "<group>"; };
 		5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
+		5285BAFC1F6B511700569123 /* BiometricPaymentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricPaymentTableViewCell.swift; sourceTree = "<group>"; };
 		6208C9831F68A89700FCEB2E /* Fusuma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fusuma.framework; path = Carthage/Build/iOS/Fusuma.framework; sourceTree = "<group>"; };
 		6208C9851F68A8F200FCEB2E /* CameraVCDummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVCDummy.swift; sourceTree = "<group>"; };
 		6208C9871F68A91A00FCEB2E /* CameraDummy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CameraDummy.storyboard; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */,
 				5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */,
+				5285BAFC1F6B511700569123 /* BiometricPaymentTableViewCell.swift */,
 				5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */,
 			);
 			path = TableViewCells;
@@ -398,7 +401,7 @@
 				TargetAttributes = {
 					5263A7EC1F677BF0008570AC = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8WCPHDZJPJ;
+						DevelopmentTeam = YYWFQ73E8M;
 						ProvisioningStyle = Automatic;
 					};
 					5263A8001F677BF0008570AC = {
@@ -513,6 +516,7 @@
 				6225C81D1F68CCBD002DA837 /* Date+Extension.swift in Sources */,
 				6208C98A1F68B66200FCEB2E /* FaceDetector.swift in Sources */,
 				6259D01A1F6788940091E549 /* Event.swift in Sources */,
+				5285BAFD1F6B511700569123 /* BiometricPaymentTableViewCell.swift in Sources */,
 				62EB039D1F69DEB100992C9E /* Data+Extension.swift in Sources */,
 				62FE933B1F67938500950874 /* RoundedView.swift in Sources */,
 				62FE933D1F6793AB00950874 /* UIView+Extension.swift in Sources */,
@@ -674,7 +678,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8WCPHDZJPJ;
+				DEVELOPMENT_TEAM = YYWFQ73E8M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -692,7 +696,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8WCPHDZJPJ;
+				DEVELOPMENT_TEAM = YYWFQ73E8M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

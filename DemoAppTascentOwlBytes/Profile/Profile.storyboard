@@ -179,6 +179,38 @@
                                             <outlet property="numberEndingLabel" destination="1P6-uD-zJq" id="9Cf-w4-Uyd"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="biometric_payment" rowHeight="46" id="lgO-iG-n56" customClass="BiometricPaymentTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="375" width="375" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lgO-iG-n56" id="vNX-oD-GYa">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opt in to Biometric Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcp-Hw-1wu">
+                                                    <rect key="frame" x="16" y="13" width="215" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="myt-pB-XwZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d37-bQ-JjO">
+                                                    <rect key="frame" x="313" y="8" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kcp-Hw-1wu" firstAttribute="top" secondItem="vNX-oD-GYa" secondAttribute="topMargin" constant="5" id="POw-0H-ITq"/>
+                                                <constraint firstAttribute="topMargin" secondItem="d37-bQ-JjO" secondAttribute="top" id="UeP-nM-4SO"/>
+                                                <constraint firstItem="kcp-Hw-1wu" firstAttribute="leading" secondItem="vNX-oD-GYa" secondAttribute="leadingMargin" constant="8" id="e53-dk-cKl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="d37-bQ-JjO" secondAttribute="trailing" constant="5" id="vm0-t1-rbZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="caption" destination="kcp-Hw-1wu" id="cec-1d-NfR"/>
+                                            <outlet property="switch" destination="d37-bQ-JjO" id="wkX-eO-Y0T"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
