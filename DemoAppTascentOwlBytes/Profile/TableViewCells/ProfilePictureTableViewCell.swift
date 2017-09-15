@@ -21,9 +21,7 @@ class ProfilePictureTableViewCell: UITableViewCell {
         profileImageView.layer.borderWidth = 2
         profileImageView.layer.borderColor = UIColor.lightGray.cgColor
         profileImageView.layer.masksToBounds = true
-    }
-    
-    func updateUI() {
+        
         profileImageView.backgroundColor = UIColor.clear
         backgroundColor = UIColor.clear
     }
