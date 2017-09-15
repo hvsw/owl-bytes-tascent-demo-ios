@@ -34,11 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        RestAPI().enroll(user: User()) { (suc: Bool, error: Error?) in
-            debugPrint("Success: \(suc)")
-            debugPrint("Error: \(error ?? "No error")")
-        }
-        
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         return true

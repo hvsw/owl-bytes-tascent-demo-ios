@@ -9,6 +9,13 @@
 import Foundation
 import Alamofire
 
+enum EnrollmentStatus: String {
+    case enrolled = "ENROLLED"
+    case pending = "PENDING"
+    case error = "ERROR"
+    case duplicate = "DUPLICATE_DETECTED"
+}
+
 class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
     
     private enum Endpoint: URLConvertible {
@@ -28,6 +35,7 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
         
         case qualityCheck
         case enroll
+        case enrollmentResult(String)
         
         func asURL() throws -> URL {
             var urlString = "https://18.194.82.72:8080"
@@ -39,6 +47,9 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
                 }
             case .enroll:
                 urlString += "/enroll"
+                
+            case .enrollmentResult(let token):
+                urlString += "/enrollment-results/\(token)/1"
             }
             
             return URL(string: urlString)!
@@ -56,11 +67,16 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
                 
             case .enroll:
                 headers["Content-Type"] = "application/vnd.tascent-bio.v1+json"
-                //                headers["Accept"] = "application/json"
+                return headers
+                
+            case .enrollmentResult:
+//                headers.removeValue(forKey: "Authorization")
+                headers["Accept"] = "application/vnd.tascent-bio.v1+json"
                 return headers
             }
         }
     }
+    
     
     private let delay = 0.5
     
@@ -71,8 +87,58 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
         
     }
     
-    private func getEnrollmentResult(from token: String) {
+    func getEnrollmentResult(for token: String, completion: @escaping ((EnrollmentStatus?, Error?) -> ())) {
         //        curl -u apiuser:aRT98dPogR -k -H "Content-Type: application/vnd.tascent-bio.v1+json" -X GET https://<TIP_IP>:9090/enrollment-results/<token>/1
+        let endpoint = Endpoint.enrollmentResult(token)
+        
+        var request = URLRequest(url: try! endpoint.asURL())
+        var headers = endpoint.headers
+//        headers?.removeValue(forKey: "Authorization")
+        request.allHTTPHeaderFields = headers
+        request.httpMethod = "GET"
+        
+        let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            if let httpResponse = response as? HTTPURLResponse {
+                if error == nil {
+                    if let status = HTTPStatusCode(HTTPResponse: httpResponse) {
+                        switch status {
+                        case .ok:
+                            do {
+                                if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: String], let statusString = json["status"] {
+                                    if let status = EnrollmentStatus(rawValue: statusString) {
+                                        completion(status, nil)
+                                    } else {
+                                        completion(nil, "Unknown status string returned from API: \(statusString)")
+                                    }
+                                } else {
+                                    completion(nil, "Serialization error")
+                                }
+                            } catch {
+                                completion(nil, "Error in JSONSerialization")
+                            }
+                            
+                        case .badRequest:
+                            completion(nil, "BAD REQUEST\nResponse: \n\(response?.debugDescription ?? "Empty")")
+                            
+                        case .notFound:
+                            completion(nil, "Enrollment token '\(token)' not found!")
+                            
+                        default:
+                            completion(nil, "Unexpected status code \(status)(\(status.rawValue))\nResponse: \n\(response?.debugDescription ?? "Empty")")
+                        }
+                    } else {
+                        completion(nil, "Unexpected status code \(httpResponse.statusCode)\nResponse: \n\(response?.debugDescription ?? "Empty")")
+                    }
+                } else {
+                    completion(nil, error!)
+                }
+            } else {
+                completion(nil, "Error casting to HTTPURLResponse")
+            }
+        }
+        task.resume()
+
     }
     
     func enroll(user: User, completion: @escaping BoolErrorBlock) {
@@ -85,7 +151,6 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
         var request = URLRequest(url: try! endpoint.asURL())
         request.allHTTPHeaderFields = endpoint.headers
         request.httpMethod = "POST"
-//        request.httpBody = "{\"key\":\"value\"}".data(using: String.Encoding.utf8)
         request.httpBody = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
         
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)

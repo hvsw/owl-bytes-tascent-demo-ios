@@ -42,6 +42,8 @@
 		6259D01A1F6788940091E549 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259D0191F6788940091E549 /* Event.swift */; };
 		6259D01D1F678BE10091E549 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259D01C1F678BE10091E549 /* EventTableViewCell.swift */; };
 		6294798A1F6A093800CA085F /* UNNotificationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629479891F6A093800CA085F /* UNNotificationAttachment.swift */; };
+		62AC05731F6B605200707C48 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC05721F6B605200707C48 /* HTTPStatusCodes.swift */; };
+		62AC05751F6B607200707C48 /* HTTPStatusCodes+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC05741F6B607200707C48 /* HTTPStatusCodes+Extension.swift */; };
 		62D9DF731F6B1A61009C7C5B /* face_iris_fingerprint.json in Resources */ = {isa = PBXBuildFile; fileRef = 62D9DF711F6B1A61009C7C5B /* face_iris_fingerprint.json */; };
 		62D9DF741F6B1A61009C7C5B /* face.json in Resources */ = {isa = PBXBuildFile; fileRef = 62D9DF721F6B1A61009C7C5B /* face.json */; };
 		62EB03991F69DDC600992C9E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EB03981F69DDC600992C9E /* UIImage+Extension.swift */; };
@@ -111,6 +113,8 @@
 		6259D0191F6788940091E549 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		6259D01C1F678BE10091E549 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		629479891F6A093800CA085F /* UNNotificationAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNNotificationAttachment.swift; sourceTree = "<group>"; };
+		62AC05721F6B605200707C48 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
+		62AC05741F6B607200707C48 /* HTTPStatusCodes+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPStatusCodes+Extension.swift"; sourceTree = "<group>"; };
 		62D9DF711F6B1A61009C7C5B /* face_iris_fingerprint.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = face_iris_fingerprint.json; sourceTree = "<group>"; };
 		62D9DF721F6B1A61009C7C5B /* face.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = face.json; sourceTree = "<group>"; };
 		62EB03981F69DDC600992C9E /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 		6225C81B1F68CCAB002DA837 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				62AC05711F6B604500707C48 /* HTTPStatusCode */,
 				62EB039C1F69DEB100992C9E /* Data+Extension.swift */,
 				6225C81C1F68CCBD002DA837 /* Date+Extension.swift */,
 				6208C9891F68B66200FCEB2E /* FaceDetector.swift */,
@@ -279,6 +284,15 @@
 				62FE933C1F6793AB00950874 /* UIView+Extension.swift */,
 			);
 			path = EventsList;
+			sourceTree = "<group>";
+		};
+		62AC05711F6B604500707C48 /* HTTPStatusCode */ = {
+			isa = PBXGroup;
+			children = (
+				62AC05721F6B605200707C48 /* HTTPStatusCodes.swift */,
+				62AC05741F6B607200707C48 /* HTTPStatusCodes+Extension.swift */,
+			);
+			name = HTTPStatusCode;
 			sourceTree = "<group>";
 		};
 		62BA78611F69C82900B00237 /* API */ = {
@@ -482,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62AC05751F6B607200707C48 /* HTTPStatusCodes+Extension.swift in Sources */,
 				522CF9FE1F68DDA200201F91 /* UIColor+Extension.swift in Sources */,
 				6208C9861F68A8F200FCEB2E /* CameraVCDummy.swift in Sources */,
 				6259D0131F6787980091E549 /* StubAPI.swift in Sources */,
@@ -489,6 +504,7 @@
 				6225C81F1F68CCD0002DA837 /* Int+Extension.swift in Sources */,
 				6259D0151F6787A80091E549 /* RestAPI.swift in Sources */,
 				522CF9F31F68B3EF00201F91 /* PaymentMethod.swift in Sources */,
+				62AC05731F6B605200707C48 /* HTTPStatusCodes.swift in Sources */,
 				5263A82B1F678AB0008570AC /* ProfileViewController.swift in Sources */,
 				5263A8301F67995B008570AC /* TextEntryTableViewCell.swift in Sources */,
 				62EB03991F69DDC600992C9E /* UIImage+Extension.swift in Sources */,
