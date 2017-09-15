@@ -47,6 +47,12 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
         tableView.separatorStyle = .none
         view.backgroundColor = UIColor.tascent
         tableView.backgroundColor = UIColor.clear
+        
+        automaticallyAdjustsScrollViewInsets = true
+        title = "Events"
+        navigationController?.navigationBar.barTintColor = UIColor.tascent
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
     // MARK: - UITableViewDataSource

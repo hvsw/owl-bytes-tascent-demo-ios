@@ -18,6 +18,8 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventPriceLabel: UILabel!
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var bottomView: RoundedView!
     
     weak var delegate: EventTableViewCellDelegate?
     
@@ -31,6 +33,13 @@ class EventTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         backgroundColor = UIColor.darkGray
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        overlayView.round(.topLeft, radius: 20)
+        eventImageView.round(.topLeft, radius: 20)
+        bottomView.round(.bottomRight, radius: 20)
     }
     
     private func updateUI() {
