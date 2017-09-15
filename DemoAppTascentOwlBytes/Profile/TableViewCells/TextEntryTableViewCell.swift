@@ -21,6 +21,7 @@ class TextEntryTableViewCell: UITableViewCell {
         separator.backgroundColor = UIColor.tascent
         caption.textColor = UIColor.tascent
         textField.autocapitalizationType = .words
+        textField.enablesReturnKeyAutomatically = true
     }
     
     func setDOBMask() {

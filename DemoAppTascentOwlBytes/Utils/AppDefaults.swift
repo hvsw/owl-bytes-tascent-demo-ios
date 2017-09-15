@@ -26,6 +26,21 @@ class AppDefaults {
     }
     
     private func getUserDefaultsKey(for user: User) -> String {
-        return String(format: "%@%@-%@", user.firstName, user.lastName, user.deviceId)
+        return String(format: "%@%@-%@", user.firstName!, user.lastName!, user.deviceId)
+    }
+    
+    func save(user: User) {
+        let encodedUser = NSKeyedArchiver.archivedData(withRootObject: user)
+        UserDefaults.standard.set(encodedUser, forKey: "currentUser")
+    }
+    
+    func currentUser() -> User? {
+        guard let encodedUser = UserDefaults.standard.data(forKey: "currentUser") else {
+            return nil
+        }
+        guard let user = NSKeyedUnarchiver.unarchiveObject(with: encodedUser) as? User else {
+            return nil
+        }
+        return user
     }
 }

@@ -74,7 +74,13 @@ class PaymentMethodViewController: UIViewController {
         guard let cvcCell = tableView.cellForRow(at: cvcPath) as? TextEntryTableViewCell else {return nil}
         guard let cvc = cvcCell.textField.text, cvcCell.textField.maskStatus == AKMaskFieldStatus.complete else {return nil}
         
-        return PaymentMethod(brand: brands[selectedBrandIndex], cardholderName: cardholder, number: number, expirationDate: expiration, securityCode: cvc)
+        let payment = PaymentMethod()
+        payment.brand = brands[selectedBrandIndex]
+        payment.cardholderName = cardholder
+        payment.number = number
+        payment.expirationDate = expiration
+        payment.securityCode = cvc
+        return payment
     }
     
     deinit {

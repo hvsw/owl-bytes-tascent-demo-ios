@@ -50,6 +50,10 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(save))
+        
+        if let currentUser = AppDefaults.shared.currentUser() {
+            user = currentUser
+        }
     }
     
     @objc fileprivate func save() {
@@ -78,6 +82,7 @@ class ProfileViewController: UIViewController {
                 SVProgressHUD.showError(withStatus: error?.localizedDescription)
                 return
             }
+            AppDefaults.shared.save(user: self.user)
             SVProgressHUD.showSuccess(withStatus: "User enrolled with success!")
         }
     }
