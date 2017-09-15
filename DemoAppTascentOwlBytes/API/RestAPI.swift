@@ -38,18 +38,16 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
         case enrollmentResult(String)
         
         func asURL() throws -> URL {
-            var urlString = "https://18.194.82.72:8080"
+            var urlString = "https://18.194.82.72"
             switch self {
             case .qualityCheck:
-                urlString += "/qualityCheck/"
-                if let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-                    urlString = urlStringEncoded
-                }
+                urlString = "http://52.59.48.9:8080"
+                
             case .enroll:
-                urlString += "/enroll"
+                urlString += ":8080/enroll"
                 
             case .enrollmentResult(let token):
-                urlString += "/enrollment-results/\(token)/1"
+                urlString += ":9090/enrollment-results/\(token)/1"
             }
             
             return URL(string: urlString)!
@@ -80,11 +78,32 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
     
     private let delay = 0.5
     
-    func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            completion(true, nil)
-        }
+    private func generateSoapString(imageId: String, imageContent: String) -> String {
+        var soapString = "<soap:Envelope\n"
+        soapString += "xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\n"
+        soapString += "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+        soapString += "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n"
+        soapString += "<soap:Body>\n"
+        soapString += "<SimpleQualityCheckRequest xmlns=\"http://docs.oasis-open.org/bias/ns/bias-1.0/\">\n"
+        // soapString += "<algorithm>algorithm</algorithm>\n"
+        soapString += "<biometricImages>\n"
+        soapString += "<biometricImage>\n"
+        soapString += "<imageId>\(imageId)</imageId>\n"
+        soapString += "<modality>FACE</modality>\n"
+        soapString += "<imageContent>\(imageContent)</imageContent>\n"
+        soapString += "</biometricImage>\n"
+        soapString += "</biometricImages>\n"
+        soapString += "</SimpleQualityCheckRequest>\n"
+        soapString += "</soap:Body>\n"
+        soapString += "</soap:Envelope>"
         
+        return soapString
+    }
+    
+    func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {
+        let soap = generateSoapString(imageId: "1", imageContent: imageData.base64)
+        var request = URLRequest(url: URL(string: "http://52.59.48.9:8080/")!)
+//        request.
     }
     
     func getEnrollmentResult(for token: String, completion: @escaping ((EnrollmentStatus?, Error?) -> ())) {
