@@ -64,9 +64,8 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     // MARK: - EventTableViewCellDelegate
     func didTapBuyAt(cell: EventTableViewCell) {
         if let evt = cell.event {
-            // process purchase
             let title = evt.name
-            let message = "Do you wanna buy the ticket for this event?"
+            let message = "Do you want to buy the ticket for this event?"
             let image = evt.image
             
             let popup = PopupDialog(title: title, message: message, image: image)
@@ -109,7 +108,6 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     
     func didTapOverlayViewOn(cell: EventTableViewCell) {
         if let evt = cell.event {
-            // process purchase
             let title = evt.name
             let message = "This event is happening and will be amazing. Don't lose this chance, buy it now with Tascent!\nTap BUY below if you want to buy a ticket to go!"
             let image = evt.image
