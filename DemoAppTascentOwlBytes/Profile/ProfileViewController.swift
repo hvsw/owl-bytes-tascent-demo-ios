@@ -16,8 +16,8 @@ private enum Sections: Int {
 }
 
 private enum UserDataSection: Int {
-    case firstName = 0, lastName, dateOfBirth
-    static let allValues = [UserDataSection.firstName, .lastName, .dateOfBirth]
+    case firstName = 0, lastName, dateOfBirth, picker
+    static let allValues = [UserDataSection.firstName, .lastName, .dateOfBirth, .picker]
 }
 
 class ProfileViewController: UIViewController {
@@ -30,6 +30,13 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate let api: APIClientProtocol = RestAPI()
+    
+    fileprivate var isPickerHidden = true {
+        didSet {
+            updateUserFromFields()
+            tableView.reloadSections([Sections.userData.rawValue], with: .automatic)
+        }
+    }
     
     fileprivate var statusBarHidden: Bool = true {
         didSet {
@@ -63,7 +70,7 @@ class ProfileViewController: UIViewController {
             SVProgressHUD.showError(withStatus: "Profile picture missing.")
             return
         }
-        guard user.firstName != "" && user.lastName != "" && user.dateOfBirth != "" else {
+        guard user.firstName != "" && user.lastName != "" && user.dateOfBirth != nil else {
             SVProgressHUD.showError(withStatus: "Personal info missing.")
             return
         }
@@ -100,9 +107,9 @@ class ProfileViewController: UIViewController {
         let lastNameCell = tableView.cellForRow(at: lastNamePath) as! TextEntryTableViewCell
         user.lastName = lastNameCell.textField.text ?? ""
         
-        let dobPath = IndexPath(row: UserDataSection.dateOfBirth.rawValue, section: Sections.userData.rawValue)
-        let dobCell = tableView.cellForRow(at: dobPath) as! TextEntryTableViewCell
-        user.dateOfBirth = dobCell.textField.text ?? ""
+        //let dobPath = IndexPath(row: UserDataSection.dateOfBirth.rawValue, section: Sections.userData.rawValue)
+        //let dobCell = tableView.cellForRow(at: dobPath) as! TextEntryTableViewCell
+        //user.dateOfBirth = dobCell.textField.text ?? ""
     }
     
     fileprivate func didTapNewPaymentMethod() {
@@ -137,7 +144,7 @@ class ProfileViewController: UIViewController {
     
     fileprivate func showConsentForBiometricPayment() {
         let title = "Biometric Payment"
-        let message = "Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. "
+        let message = "Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum."
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let optOut = UIAlertAction(title: "Opt Out", style: .cancel) { (action) in
@@ -170,7 +177,19 @@ extension ProfileViewController: UITableViewDelegate {
         case .picture:
             didTapProfilePicture()
             return
-        case .userData: return
+        case .userData:
+            if indexPath.row == UserDataSection.dateOfBirth.rawValue {
+                guard !isPickerHidden else {
+                    isPickerHidden = !isPickerHidden
+                    return
+                }
+                let cell = tableView.cellForRow(at: IndexPath(row: UserDataSection.picker.rawValue, section: indexPath.section)) as! DatePickerCell
+                let date = cell.datePicker.date
+                
+                user.dateOfBirth = date
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                isPickerHidden = true
+            }
         case .paymentMethods:
             guard user.paymentMethods.count > indexPath.row else {
                 didTapNewPaymentMethod()
@@ -225,7 +244,11 @@ extension ProfileViewController: UITableViewDataSource {
         case .picture:
             return 1
         case .userData:
-            return UserDataSection.allValues.count
+            if isPickerHidden {
+                return UserDataSection.allValues.count - 1
+            } else {
+                return UserDataSection.allValues.count
+            }
         case .paymentMethods:
             return user.paymentMethods.count + 1 //counting the add new method cell
         case .biometric:
@@ -238,9 +261,14 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let defaultHeight: CGFloat = 50
         let pictureHeight: CGFloat = 150
+        let pickerHeight: CGFloat = 150
         guard let section = Sections(rawValue: indexPath.section) else {return defaultHeight}
         if section == .picture {
             return pictureHeight
+        }
+        if indexPath.section == Sections.userData.rawValue &&
+            indexPath.row == UserDataSection.picker.rawValue {
+            return pickerHeight
         }
         return defaultHeight
     }
@@ -257,21 +285,38 @@ extension ProfileViewController: UITableViewDataSource {
             }
             return cell
         case .userData:
+            guard indexPath.row != UserDataSection.picker.rawValue else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "picker", for: indexPath) as? DatePickerCell else {return UITableViewCell()}
+                return cell
+            }
             guard let cellType = UserDataSection(rawValue: indexPath.row) else {return UITableViewCell()}
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextEntryTableViewCell else {return UITableViewCell()}
             switch cellType {
             case .firstName:
                 cell.caption.text = "First Name"
+                cell.textField.placeholder = "Required"
                 cell.textField.text = user.firstName
             case .lastName:
                 cell.caption.text = "Last Name"
+                cell.textField.placeholder = "Required"
                 cell.textField.text = user.lastName
             case .dateOfBirth:
                 cell.caption.text = "DOB"
-                cell.textField.keyboardType = .numberPad
+                //cell.textField.keyboardType = .numberPad
                 cell.textField.placeholder = "mm/dd/yyyy"
-                cell.setDOBMask()
-                cell.textField.text = user.dateOfBirth
+                cell.textField.isUserInteractionEnabled = false
+                
+                //cell.setDOBMask()
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yyyy"
+                if let date = user.dateOfBirth {
+                    let dateString = dateFormatter.string(from: date)
+                    cell.textField.text = dateString
+                } else {
+                    cell.textField.text = ""
+                }
+            case .picker:break
             }
             return cell
         case .paymentMethods:

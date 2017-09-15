@@ -12,7 +12,7 @@ class User: NSObject, NSCoding {
     var token: String = ""
     var firstName: String?
     var lastName: String?
-    var dateOfBirth: String?
+    var dateOfBirth: Date?
     var optedInToBiometricPayment: Bool = false
     var paymentMethods = [PaymentMethod]()
     var profilePicture: UIImage?
@@ -42,7 +42,8 @@ class User: NSObject, NSCoding {
         if let lastName = aDecoder.decodeObject(forKey: "lastName") as? String {
             self.lastName = lastName
         }
-        if let dateOfBirth = aDecoder.decodeObject(forKey: "dateOfBirth") as? String {
+        
+        if let dateOfBirth = aDecoder.decodeObject(forKey: "dateOfBirth") as? Date {
             self.dateOfBirth = dateOfBirth
         }
         let optedIn = aDecoder.decodeBool(forKey: "optedIn")
