@@ -33,10 +33,9 @@ class EventTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         backgroundColor = UIColor.darkGray
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapOverlayView(gesture:)))
+        contentView.addGestureRecognizer(tap)
+        
         overlayView.round(.topLeft, radius: 20)
         eventImageView.round(.topLeft, radius: 20)
         bottomView.round(.bottomRight, radius: 20)
@@ -59,6 +58,19 @@ class EventTableViewCell: UITableViewCell {
         }
         
         delegate?.didTapBuyAt(cell: self)
+    }
+    
+    @objc private func didTapOverlayView(gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: overlayView)
+        if overlayView.point(inside: point, with: nil) {
+            
+            guard event != nil else {
+                debugPrint("No event on the cell!")
+                return
+            }
+            
+            delegate?.didTapBuyAt(cell: self)
+        }
     }
     
 }
