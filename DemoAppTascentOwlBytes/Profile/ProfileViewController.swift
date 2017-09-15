@@ -83,6 +83,7 @@ class ProfileViewController: UIViewController {
                 return
             }
             AppDefaults.shared.save(user: self.user)
+            self.tableView.reloadSections([Sections.logout.rawValue], with: .automatic)
             SVProgressHUD.showSuccess(withStatus: "User enrolled with success!")
         }
     }
@@ -251,6 +252,8 @@ extension ProfileViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "picture", for: indexPath) as? ProfilePictureTableViewCell else {return UITableViewCell()}
             if user.profilePicture != nil  {
                 cell.profileImageView.image = user.profilePicture
+            } else {
+                cell.profileImageView.image = UIImage(named: "profile_placeholder")
             }
             return cell
         case .userData:
@@ -259,22 +262,16 @@ extension ProfileViewController: UITableViewDataSource {
             switch cellType {
             case .firstName:
                 cell.caption.text = "First Name"
-                if !cell.textField.hasText {
-                    cell.textField.text = user.firstName
-                }
+                cell.textField.text = user.firstName
             case .lastName:
                 cell.caption.text = "Last Name"
-                if !cell.textField.hasText {
-                    cell.textField.text = user.lastName
-                }
+                cell.textField.text = user.lastName
             case .dateOfBirth:
                 cell.caption.text = "DOB"
                 cell.textField.keyboardType = .numberPad
                 cell.textField.placeholder = "mm/dd/yyyy"
-                if !cell.textField.hasText {
-                    cell.setDOBMask()
-                    cell.textField.text = user.dateOfBirth
-                }
+                cell.setDOBMask()
+                cell.textField.text = user.dateOfBirth
             }
             return cell
         case .paymentMethods:
@@ -372,5 +369,4 @@ extension ProfileViewController: FusumaDelegate {
     func fusumaWillClosed() {
         statusBarHidden = false
     }
-    
 }
