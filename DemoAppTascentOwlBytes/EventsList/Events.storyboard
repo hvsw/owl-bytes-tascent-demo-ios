@@ -124,10 +124,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HRJ-hL-xok" firstAttribute="leading" secondItem="NHU-cN-t5H" secondAttribute="leading" id="Gbc-YB-6jc"/>
-                            <constraint firstItem="HRJ-hL-xok" firstAttribute="top" secondItem="NHU-cN-t5H" secondAttribute="top" id="Rq6-ob-Jx4"/>
-                            <constraint firstAttribute="trailing" secondItem="HRJ-hL-xok" secondAttribute="trailing" id="fCq-1U-dPj"/>
-                            <constraint firstItem="hbu-Nl-LX7" firstAttribute="top" secondItem="HRJ-hL-xok" secondAttribute="bottom" id="ixF-DR-hDc"/>
+                            <constraint firstItem="HRJ-hL-xok" firstAttribute="top" secondItem="NHU-cN-t5H" secondAttribute="top" id="1D5-nW-xgc"/>
+                            <constraint firstItem="HRJ-hL-xok" firstAttribute="leading" secondItem="NHU-cN-t5H" secondAttribute="leading" id="L5o-0A-qLg"/>
+                            <constraint firstAttribute="trailing" secondItem="HRJ-hL-xok" secondAttribute="trailing" id="P6M-MA-OzD"/>
+                            <constraint firstItem="hbu-Nl-LX7" firstAttribute="top" secondItem="HRJ-hL-xok" secondAttribute="bottom" id="s3o-72-Iu6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="ax5-VC-gmX"/>
