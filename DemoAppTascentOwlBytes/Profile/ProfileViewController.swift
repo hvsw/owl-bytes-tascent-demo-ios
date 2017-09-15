@@ -23,18 +23,13 @@ private enum UserDataSection: Int {
 class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate let api: APIClientProtocol = RestAPI()
-    fileprivate var optedInToBiometricPayment = false {
-        didSet {
-            tableView.reloadSections([Sections.biometric.rawValue], with: .automatic)
-        }
-    }
-    
-    fileprivate var paymentMethods = [PaymentMethod]() {
+    var user = User() {
         didSet {
             tableView.reloadData()
         }
     }
+    
+    fileprivate let api: APIClientProtocol = RestAPI()
     
     fileprivate var statusBarHidden: Bool = true {
         didSet {
@@ -53,6 +48,55 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.tascent
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(save))
+    }
+    
+    @objc fileprivate func save() {
+        updateUserFromFields()
+        
+        guard user.profilePicture != nil else {
+            SVProgressHUD.showError(withStatus: "Profile picture missing.")
+            return
+        }
+        guard user.firstName != "" && user.lastName != "" && user.dateOfBirth != "" else {
+            SVProgressHUD.showError(withStatus: "Personal info missing.")
+            return
+        }
+        guard user.paymentMethods.count > 0 else {
+            SVProgressHUD.showError(withStatus: "Please choose at least 1 payment method.")
+            return
+        }
+        guard user.optedInToBiometricPayment else {
+            SVProgressHUD.showError(withStatus: "Please opt in to biometric payment.")
+            return
+        }
+        
+        SVProgressHUD.show()
+        api.enroll(user: user) { (success, error) in
+            guard error == nil else {
+                SVProgressHUD.showError(withStatus: error?.localizedDescription)
+                return
+            }
+            SVProgressHUD.showSuccess(withStatus: "User enrolled with success!")
+        }
+    }
+    
+    fileprivate func updateUserFromFields() {
+        //profilePicture is already populated
+        
+        //first name
+        let firstNamePath = IndexPath(row: UserDataSection.firstName.rawValue, section: Sections.userData.rawValue)
+        let firstNameCell = tableView.cellForRow(at: firstNamePath) as! TextEntryTableViewCell
+        user.firstName = firstNameCell.textField.text ?? ""
+        
+        let lastNamePath = IndexPath(row: UserDataSection.lastName.rawValue, section: Sections.userData.rawValue)
+        let lastNameCell = tableView.cellForRow(at: lastNamePath) as! TextEntryTableViewCell
+        user.lastName = lastNameCell.textField.text ?? ""
+        
+        let dobPath = IndexPath(row: UserDataSection.dateOfBirth.rawValue, section: Sections.userData.rawValue)
+        let dobCell = tableView.cellForRow(at: dobPath) as! TextEntryTableViewCell
+        user.dateOfBirth = dobCell.textField.text ?? ""
     }
     
     fileprivate func didTapNewPaymentMethod() {
@@ -78,9 +122,11 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func setProfilePicture(_ image: UIImage) {
-        let indexPath = IndexPath(row: 0, section: Sections.picture.rawValue)
-        guard let cell = tableView.cellForRow(at: indexPath) as? ProfilePictureTableViewCell else {return}
-        cell.profileImageView.image = image
+        user.profilePicture = image
+        tableView.reloadSections([Sections.picture.rawValue], with: .automatic)
+        if !user.optedInToBiometricPayment {
+            showConsentForBiometricPayment()
+        }
     }
     
     fileprivate func showConsentForBiometricPayment() {
@@ -100,11 +146,13 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func userOptedOutOfBiometricPayment() {
-        optedInToBiometricPayment = false
+        user.optedInToBiometricPayment = false
+        tableView.reloadSections([Sections.biometric.rawValue], with: .automatic)
     }
     
     fileprivate func userOptedInToBiometricPayment() {
-        optedInToBiometricPayment = true
+        user.optedInToBiometricPayment = true
+        tableView.reloadSections([Sections.biometric.rawValue], with: .automatic)
     }
 }
 
@@ -118,16 +166,20 @@ extension ProfileViewController: UITableViewDelegate {
             return
         case .userData: return
         case .paymentMethods:
-            guard paymentMethods.count > indexPath.row else {
+            guard user.paymentMethods.count > indexPath.row else {
                 didTapNewPaymentMethod()
                 return
             }
             //didSelectPaymentMethod, nothing to be done, yet
             return
         case .biometric:
-            if optedInToBiometricPayment {
+            if user.optedInToBiometricPayment {
                 userOptedOutOfBiometricPayment()
             } else {
+                guard user.profilePicture != nil else {
+                    didTapProfilePicture()
+                    return
+                }
                 showConsentForBiometricPayment()
             }
             return
@@ -140,7 +192,7 @@ extension ProfileViewController: UITableViewDataSource {
         guard let sectionType = Sections(rawValue: section) else {return ""}
         switch sectionType {
         case .picture:
-            return "Picture"
+            return " "
         case .userData:
             return "User Data"
         case .paymentMethods:
@@ -162,7 +214,7 @@ extension ProfileViewController: UITableViewDataSource {
         case .userData:
             return UserDataSection.allValues.count
         case .paymentMethods:
-            return paymentMethods.count + 1 //counting the add new method cell
+            return user.paymentMethods.count + 1 //counting the add new method cell
         case .biometric:
             return 1
         }
@@ -183,7 +235,9 @@ extension ProfileViewController: UITableViewDataSource {
         switch section {
         case .picture:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "picture", for: indexPath) as? ProfilePictureTableViewCell else {return UITableViewCell()}
-            cell.updateUI()
+            if user.profilePicture != nil  {
+                cell.profileImageView.image = user.profilePicture
+            }
             return cell
         case .userData:
             guard let cellType = UserDataSection(rawValue: indexPath.row) else {return UITableViewCell()}
@@ -191,28 +245,37 @@ extension ProfileViewController: UITableViewDataSource {
             switch cellType {
             case .firstName:
                 cell.caption.text = "First Name"
+                if !cell.textField.hasText {
+                    cell.textField.text = user.firstName
+                }
             case .lastName:
                 cell.caption.text = "Last Name"
+                if !cell.textField.hasText {
+                    cell.textField.text = user.lastName
+                }
             case .dateOfBirth:
                 cell.caption.text = "DOB"
                 cell.textField.keyboardType = .numberPad
                 cell.textField.placeholder = "mm/dd/yyyy"
-                cell.setDOBMask()
+                if !cell.textField.hasText {
+                    cell.setDOBMask()
+                    cell.textField.text = user.dateOfBirth
+                }
             }
             return cell
         case .paymentMethods:
-            guard paymentMethods.count > indexPath.row else {
+            guard user.paymentMethods.count > indexPath.row else {
                 return tableView.dequeueReusableCell(withIdentifier: "new_method", for: indexPath)
             }
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "payment_method", for: indexPath) as? PaymentMethodTableViewCell else {return UITableViewCell()}
-            cell.paymentMethod = paymentMethods[indexPath.row]
+            cell.paymentMethod = user.paymentMethods[indexPath.row]
             return cell
         case .biometric:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "biometric_payment", for: indexPath) as? BiometricPaymentTableViewCell else {return UITableViewCell()}
             
-            let text = optedInToBiometricPayment ? "Tap to opt out" : "Opt In to Biometric Payment"
+            let text = user.optedInToBiometricPayment ? "Tap to opt out" : "Opt In to Biometric Payment"
             cell.caption.text = text
-            cell.switch.setOn(optedInToBiometricPayment, animated: true)
+            cell.switch.setOn(user.optedInToBiometricPayment, animated: true)
             cell.switch.isEnabled = false
             return cell
         }
@@ -222,9 +285,9 @@ extension ProfileViewController: UITableViewDataSource {
 // MARK: - PaymentMethodViewControllerDelegate
 extension ProfileViewController: PaymentMethodViewControllerDelegate {
     func didCreatePaymentMethod(paymentMethodViewController: PaymentMethodViewController, payment: PaymentMethod) {
-        paymentMethods.append(payment)
+        user.paymentMethods.append(payment)
         navigationController?.popViewController(animated: true)
-        tableView.reloadData()
+        tableView.reloadSections([Sections.paymentMethods.rawValue], with: .automatic)
     }
 }
 
