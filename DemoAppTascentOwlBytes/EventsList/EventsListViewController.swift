@@ -107,6 +107,26 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
         }
     }
     
+    func didTapOverlayViewOn(cell: EventTableViewCell) {
+        if let evt = cell.event {
+            // process purchase
+            let title = evt.name
+            let message = "This event is happening and will be amazing. Tap BUY below if you want to buy a ticket to go!"
+            let image = evt.image
+            
+            let popup = PopupDialog(title: title, message: message, image: image)
+            let closeButton = CancelButton(title: "NO", action: nil)
+            popup.addButton(closeButton)
+            
+            let openSiteButton = DefaultButton(title: "BUY") {
+                self.didTapBuyAt(cell: cell)
+            }
+            popup.addButton(openSiteButton)
+            
+            present(popup, animated: true, completion: nil)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }

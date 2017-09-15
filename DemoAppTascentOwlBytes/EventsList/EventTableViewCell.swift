@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import PopupDialog
 
 protocol EventTableViewCellDelegate: class {
     func didTapBuyAt(cell: EventTableViewCell)
+    func didTapOverlayViewOn(cell: EventTableViewCell)
 }
 
 class EventTableViewCell: UITableViewCell {
@@ -69,7 +71,7 @@ class EventTableViewCell: UITableViewCell {
                 return
             }
             
-            delegate?.didTapBuyAt(cell: self)
+            delegate?.didTapOverlayViewOn(cell: self)
         }
     }
     
