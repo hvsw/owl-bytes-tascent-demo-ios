@@ -179,7 +179,7 @@
                                             <outlet property="numberEndingLabel" destination="1P6-uD-zJq" id="9Cf-w4-Uyd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="biometric_payment" rowHeight="46" id="lgO-iG-n56" customClass="PaymentMethodTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="biometric_payment" rowHeight="46" id="lgO-iG-n56" customClass="BiometricPaymentTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="375" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lgO-iG-n56" id="vNX-oD-GYa">
@@ -207,7 +207,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="brandLabel" destination="kcp-Hw-1wu" id="OsX-aG-R0l"/>
+                                            <outlet property="caption" destination="kcp-Hw-1wu" id="cec-1d-NfR"/>
+                                            <outlet property="switch" destination="d37-bQ-JjO" id="wkX-eO-Y0T"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -24,10 +24,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate let api: APIClientProtocol = RestAPI()
+    fileprivate var optedInToBiometricPayment = false {
+        didSet {
+            tableView.reloadSections([Sections.biometric.rawValue], with: .automatic)
+        }
+    }
     
-    var image = UIImage(named: "profile_placeholder")
-    
-    var paymentMethods = [PaymentMethod]() {
+    fileprivate var paymentMethods = [PaymentMethod]() {
         didSet {
             tableView.reloadData()
         }
@@ -75,8 +78,6 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func setProfilePicture(_ image: UIImage) {
-        //        self.image = image
-        //        tableView.reloadData()
         let indexPath = IndexPath(row: 0, section: Sections.picture.rawValue)
         guard let cell = tableView.cellForRow(at: indexPath) as? ProfilePictureTableViewCell else {return}
         cell.profileImageView.image = image
@@ -91,7 +92,7 @@ class ProfileViewController: UIViewController {
             self.userOptedOutOfBiometricPayment()
         }
         let optIn = UIAlertAction(title: "Opt In", style: .default) { (action) in
-            self.userOptedOutOfBiometricPayment()
+            self.userOptedInToBiometricPayment()
         }
         alert.addAction(optIn)
         alert.addAction(optOut)
@@ -99,11 +100,11 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func userOptedOutOfBiometricPayment() {
-        
+        optedInToBiometricPayment = false
     }
     
     fileprivate func userOptedInToBiometricPayment() {
-        
+        optedInToBiometricPayment = true
     }
 }
 
@@ -124,7 +125,11 @@ extension ProfileViewController: UITableViewDelegate {
             //didSelectPaymentMethod, nothing to be done, yet
             return
         case .biometric:
-            showConsentForBiometricPayment()
+            if optedInToBiometricPayment {
+                userOptedOutOfBiometricPayment()
+            } else {
+                showConsentForBiometricPayment()
+            }
             return
         }
     }
@@ -203,7 +208,13 @@ extension ProfileViewController: UITableViewDataSource {
             cell.paymentMethod = paymentMethods[indexPath.row]
             return cell
         case .biometric:
-            return tableView.dequeueReusableCell(withIdentifier: "biometric_payment", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "biometric_payment", for: indexPath) as? BiometricPaymentTableViewCell else {return UITableViewCell()}
+            
+            let text = optedInToBiometricPayment ? "Tap to opt out" : "Opt In to Biometric Payment"
+            cell.caption.text = text
+            cell.switch.setOn(optedInToBiometricPayment, animated: true)
+            cell.switch.isEnabled = false
+            return cell
         }
     }
 }
@@ -214,7 +225,6 @@ extension ProfileViewController: PaymentMethodViewControllerDelegate {
         paymentMethods.append(payment)
         navigationController?.popViewController(animated: true)
         tableView.reloadData()
-        
     }
 }
 
