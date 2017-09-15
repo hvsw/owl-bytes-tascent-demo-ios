@@ -9,7 +9,9 @@
 import Foundation
 
 class StubAPI: APIClientProtocol {
-    
+    func getEnrollmentResult(for token: String, completion: @escaping (EnrollmentResultBlock)) {
+        
+    }
     private let delay = 0.5
     
     func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {

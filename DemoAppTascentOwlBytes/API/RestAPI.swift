@@ -49,6 +49,7 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
                 urlString += "/enroll"
                 
             case .enrollmentResult(let token):
+                urlString = "https://18.194.82.72:9090"
                 urlString += "/enrollment-results/\(token)/1"
             }
             
