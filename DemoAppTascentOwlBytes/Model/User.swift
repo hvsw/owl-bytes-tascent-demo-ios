@@ -9,7 +9,7 @@
 import UIKit
 
 class User: NSObject, NSCoding {
-    var deviceId: String = ""
+    var token: String = ""
     var firstName: String?
     var lastName: String?
     var dateOfBirth: String?
@@ -22,7 +22,7 @@ class User: NSObject, NSCoding {
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(deviceId, forKey: "deviceId")
+        aCoder.encode(token, forKey: "token")
         aCoder.encode(firstName, forKey: "firstName")
         aCoder.encode(lastName, forKey: "lastName")
         aCoder.encode(dateOfBirth, forKey: "dateOfBirth")
@@ -33,8 +33,8 @@ class User: NSObject, NSCoding {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        if let deviceId = aDecoder.decodeObject(forKey: "deviceId") as? String {
-            self.deviceId = deviceId
+        if let token = aDecoder.decodeObject(forKey: "token") as? String {
+            self.token = token
         }
         if let firstName = aDecoder.decodeObject(forKey: "firstName") as? String {
             self.firstName = firstName
@@ -45,9 +45,9 @@ class User: NSObject, NSCoding {
         if let dateOfBirth = aDecoder.decodeObject(forKey: "dateOfBirth") as? String {
             self.dateOfBirth = dateOfBirth
         }
-        if let optedIn = aDecoder.decodeObject(forKey: "optedIn") as? Bool {
-            self.optedInToBiometricPayment = optedIn
-        }
+        let optedIn = aDecoder.decodeBool(forKey: "optedIn")
+        self.optedInToBiometricPayment = optedIn
+        
         if let paymentMethods = aDecoder.decodeObject(forKey: "paymentMethods") as? [PaymentMethod] {
             self.paymentMethods = paymentMethods
         }

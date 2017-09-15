@@ -14,24 +14,24 @@ class AppDefaults {
     
     private init() { }
     
-    func getToken(for user: User) -> String? {
-        let key = getUserDefaultsKey(for: user)
-        return UserDefaults.standard.string(forKey: key)
+    func getToken() -> String? {
+        guard let user = currentUser() else {return nil}
+        return user.token
     }
     
-    func set(token: String, for user: User) {
-        let key = getUserDefaultsKey(for: user)
-        UserDefaults.standard.set(token, forKey: key)
-        UserDefaults.standard.synchronize()
-    }
-    
-    private func getUserDefaultsKey(for user: User) -> String {
-        return String(format: "%@%@-%@", user.firstName!, user.lastName!, user.deviceId)
+    func set(token: String) {
+        guard let user = currentUser() else {return}
+        user.token = token
+        save(user: user)
     }
     
     func save(user: User) {
         let encodedUser = NSKeyedArchiver.archivedData(withRootObject: user)
         UserDefaults.standard.set(encodedUser, forKey: "currentUser")
+    }
+    
+    func clear() {
+        UserDefaults.standard.removeObject(forKey: "currentUser")
     }
     
     func currentUser() -> User? {

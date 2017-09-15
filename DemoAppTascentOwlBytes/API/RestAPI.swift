@@ -161,7 +161,7 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
                     case 200:
                         do {
                             if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: String], let token = json["value"] {
-                                AppDefaults.shared.set(token: token, for: user)
+                                AppDefaults.shared.set(token: token)
                                 completion(true, nil)
                             } else {
                                 completion(false, "Serialization error")

@@ -11,8 +11,8 @@ import UIKit
 import SVProgressHUD
 
 private enum Sections: Int {
-    case picture = 0, userData, paymentMethods, biometric
-    static let allValues = [Sections.picture, .userData, .paymentMethods, .biometric]
+    case picture = 0, userData, paymentMethods, biometric, logout
+    static let allValues = [Sections.picture, .userData, .paymentMethods, .biometric, .logout]
 }
 
 private enum UserDataSection: Int {
@@ -188,6 +188,11 @@ extension ProfileViewController: UITableViewDelegate {
                 showConsentForBiometricPayment()
             }
             return
+        case .logout:
+            AppDefaults.shared.clear()
+            user = User()
+            tableView.reloadData()
+            return
         }
     }
 }
@@ -204,6 +209,8 @@ extension ProfileViewController: UITableViewDataSource {
             return "Payment Methods"
         case .biometric:
             return "Biometric Payment"
+        case .logout:
+            return " "
         }
     }
     
@@ -222,6 +229,8 @@ extension ProfileViewController: UITableViewDataSource {
             return user.paymentMethods.count + 1 //counting the add new method cell
         case .biometric:
             return 1
+        case .logout:
+            return AppDefaults.shared.currentUser() == nil ? 0 : 1
         }
     }
     
@@ -283,6 +292,8 @@ extension ProfileViewController: UITableViewDataSource {
             cell.switch.setOn(user.optedInToBiometricPayment, animated: true)
             cell.switch.isEnabled = false
             return cell
+        case .logout:
+            return tableView.dequeueReusableCell(withIdentifier: "logout", for: indexPath)
         }
     }
 }

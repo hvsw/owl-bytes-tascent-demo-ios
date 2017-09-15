@@ -44,7 +44,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="picture" rowHeight="150" id="1hQ-BZ-jXE" customClass="ProfilePictureTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hQ-BZ-jXE" id="JH7-5w-Dml">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -68,7 +68,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="text" rowHeight="80" id="yv9-2R-e77" customClass="TextEntryTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="206" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yv9-2R-e77" id="wcd-xs-nDd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -118,7 +118,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="new_method" rowHeight="43" id="goY-w6-ybE">
-                                        <rect key="frame" x="0.0" y="286" width="375" height="43"/>
+                                        <rect key="frame" x="0.0" y="285.5" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="goY-w6-ybE" id="qau-kb-Oao">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -142,7 +142,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="payment_method" rowHeight="46" id="h75-Eh-ZTu" customClass="PaymentMethodTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="329" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="328.5" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h75-Eh-ZTu" id="iIU-bA-Lba">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
@@ -180,7 +180,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="biometric_payment" rowHeight="46" id="lgO-iG-n56" customClass="BiometricPaymentTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="375" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="374.5" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lgO-iG-n56" id="vNX-oD-GYa">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
@@ -210,6 +210,30 @@
                                             <outlet property="caption" destination="kcp-Hw-1wu" id="cec-1d-NfR"/>
                                             <outlet property="switch" destination="d37-bQ-JjO" id="wkX-eO-Y0T"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logout" rowHeight="46" id="kzo-dA-Vw5" customClass="BiometricPaymentTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="420.5" width="375" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kzo-dA-Vw5" id="vu4-UB-gT6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apD-Zd-dZq">
+                                                    <rect key="frame" x="159" y="12.5" width="56" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="1hP-mb-1bf"/>
+                                                        <constraint firstAttribute="width" constant="56" id="WaN-wR-LJ7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" red="0.9142335057258606" green="0.30973494052886963" blue="0.27672407031059265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="apD-Zd-dZq" firstAttribute="centerX" secondItem="vu4-UB-gT6" secondAttribute="centerX" id="Lpa-WR-wuQ"/>
+                                                <constraint firstItem="apD-Zd-dZq" firstAttribute="centerY" secondItem="vu4-UB-gT6" secondAttribute="centerY" id="WNT-kt-ZRg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
