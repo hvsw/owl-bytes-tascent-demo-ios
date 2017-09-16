@@ -16,7 +16,9 @@ enum EnrollmentStatus: String {
     case duplicate = "DUPLICATE_DETECTED"
 }
 
-class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
+class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate, XMLParserDelegate, NSURLConnectionDelegate {
+    
+    private var mutableData = Data()
     
     private enum Endpoint: URLConvertible {
         private struct Authentication {
@@ -100,9 +102,21 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
     }
     
     func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {
-        let soap = generateSoapString(imageId: "1", imageContent: imageData.base64)
-        var request = URLRequest(url: URL(string: "http://52.59.48.9:8080/")!)
-        //        request.
+        let soapMessage = generateSoapString(imageId: "1", imageContent: imageData.base64)
+        var theRequest = URLRequest(url: URL(string: "http://52.59.48.9:8080/")!)
+        let msgLength = soapMessage.characters.count
+        
+        theRequest.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        theRequest.addValue(String(msgLength), forHTTPHeaderField: "Content-Length")
+        theRequest.httpMethod = "POST"
+        theRequest.httpBody = soapMessage.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        
+        URLSession.shared.dataTask(with: theRequest) { (data: Data?, response: URLResponse?, error: Error?) in
+            print(data)
+            print(response)
+            print(error)
+        }.resume()
+        
     }
     
     //        curl -u apiuser:aRT98dPogR -k -H "Content-Type: application/vnd.tascent-bio.v1+json" -X GET https://18.194.82.72:9090/enrollment-results/<token>/1

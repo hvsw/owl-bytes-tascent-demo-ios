@@ -41,12 +41,23 @@
                     </tabBar>
                     <connections>
                         <segue destination="XvY-Gi-3Wb" kind="relationship" relationship="viewControllers" id="brX-vE-fkV"/>
+                        <segue destination="VkK-f4-hNK" kind="relationship" relationship="viewControllers" id="9nB-T7-NTW"/>
                         <segue destination="pz7-9C-5eD" kind="relationship" relationship="viewControllers" id="0c1-Gc-iYT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iey-7e-fP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-874" y="384"/>
+        </scene>
+        <!--MyTickets-->
+        <scene sceneID="1vP-xl-14u">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyTickets" id="VkK-f4-hNK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Yap-N5-3Ll"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aax-N0-Nw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-312" y="544"/>
         </scene>
     </scenes>
 </document>
