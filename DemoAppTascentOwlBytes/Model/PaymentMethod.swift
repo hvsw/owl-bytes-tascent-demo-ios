@@ -17,6 +17,16 @@ class PaymentMethod: NSObject, NSCoding {
     
     override init() {}
     
+    static func mockPaymentMethod() -> PaymentMethod {
+        let p = PaymentMethod()
+        p.brand = "Master Card"
+        p.cardholderName = "John Appleseed"
+        p.number = "4061-7240-6172-4061"
+        p.expirationDate = "10/22"
+        p.securityCode = "505"
+        return p
+    }
+    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(brand, forKey: "brand")
         aCoder.encode(cardholderName, forKey: "cardholder")

@@ -31,6 +31,8 @@ class PaymentMethodViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var delegate: PaymentMethodViewControllerDelegate?
     
+    let payment = PaymentMethod.mockPaymentMethod()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -148,6 +150,7 @@ extension PaymentMethodViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextEntryTableViewCell else {return UITableViewCell()}
             cell.caption.text = "Cardholder"
             cell.textField.placeholder = "As shown on card"
+            cell.textField.text = payment.cardholderName
             return cell
         case .cardData:
             guard let cellType = CardDataSection(rawValue: indexPath.row) else { return UITableViewCell() }
@@ -157,14 +160,17 @@ extension PaymentMethodViewController: UITableViewDataSource {
                 cell.caption.text = "Number"
                 cell.textField.placeholder = "0000 0000 0000 0000"
                 cell.setCardNumberMask()
+                cell.textField.text = payment.number
             case .expirationDate:
                 cell.caption.text = "Expiration"
                 cell.textField.placeholder = "MM/YY"
                 cell.setExpirationDateMask()
+                cell.textField.text = payment.expirationDate
             case .securityCode:
                 cell.caption.text = "CVC"
                 cell.textField.placeholder = "000"
                 cell.setSecurityCodeMask()
+                cell.textField.text = payment.securityCode
             }
             cell.textField.keyboardType = .numberPad
             return cell
