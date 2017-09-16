@@ -41,5 +41,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler([.alert, .badge, .sound])
     }
     
+    private func test() {
+        let user = User()
+        RestAPI().enroll(user: user) { (suc: Bool, error: Error?, token: String?) in
+            if error == nil {
+                if token != nil {
+                    user.token = token!
+                    AppDefaults.shared.save(user: user)
+                    RestAPI().getEnrollmentResult(for: user) { (status: EnrollmentStatus?, error: Error?) in
+                        if status != nil {
+                            print(status!)
+                        }
+                        
+                        if error != nil {
+                            print(error!)
+                        }
+                    }
+                } else {
+                    debugPrint("Token nil")
+                }
+            } else {
+                debugPrint(error!)
+            }
+        }
+    }
+    
 }
 

@@ -84,7 +84,7 @@ class ProfileViewController: UIViewController {
         }
         
         SVProgressHUD.show()
-        api.enroll(user: user) { (success, error) in
+        api.enroll(user: user) { (success: Bool, error: Error?, token: String?) in
             guard error == nil else {
                 SVProgressHUD.showError(withStatus: "The operation could not be completed.")
                 return
