@@ -9,7 +9,6 @@
 import CoreImage
 import Foundation
 import Fusuma
-import SVProgressHUD
 import UIKit
 
 class CameraViewControllerDummy: UIViewController, FusumaDelegate {
@@ -43,7 +42,7 @@ class CameraViewControllerDummy: UIViewController, FusumaDelegate {
     
     func fusumaCameraRollUnauthorized() {
         debugPrint("Not authorized")
-        SVProgressHUD.showError(withStatus: "You must enable camera access in order to use this feature. Please access your settings and enable camera for this app.")
+        showError("You must enable camera access in order to use this feature. Please access your settings and enable camera for this app.")
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
@@ -63,10 +62,10 @@ class CameraViewControllerDummy: UIViewController, FusumaDelegate {
                     debugPrint("valid image")
                     self.imageView.image = image
                 } else {
-                    SVProgressHUD.showError(withStatus: "Invalid image")
+                    self.showError("Invalid image")
                 }
             } else {
-                SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
+                self.showError("Error checking the image! \nDetails: \(error!)")
             }
         }
     }
@@ -77,7 +76,7 @@ class CameraViewControllerDummy: UIViewController, FusumaDelegate {
         //        images.map({faceImages.append(FaceDetector.getFaces(from: $0).flatMap($0))})
         
         guard let image = images.first, let data = image.data else {
-            SVProgressHUD.showError(withStatus: "Error generating data from image")
+            showError("Error generating data from image")
             return
         }
         
@@ -87,10 +86,10 @@ class CameraViewControllerDummy: UIViewController, FusumaDelegate {
                     debugPrint("valid image")
                     self.imageView.image = image
                 } else {
-                    SVProgressHUD.showError(withStatus: "Invalid image")
+                    self.showError("Invalid image")
                 }
             } else {
-                SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
+                self.showError("Error checking the image! \nDetails: \(error!)")
             }
         }
         

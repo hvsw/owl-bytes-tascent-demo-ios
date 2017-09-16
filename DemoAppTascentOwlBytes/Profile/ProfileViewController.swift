@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 import SwiftyCam
 
 private enum Sections: Int {
@@ -67,38 +66,39 @@ class ProfileViewController: UIViewController {
         updateUserFromFields()
         
         guard user.profilePicture != nil else {
-            SVProgressHUD.showError(withStatus: "Profile picture missing.")
+            showError("Profile picture missing.")
             return
         }
         guard user.firstName != "" && user.lastName != "" && user.dateOfBirth != nil else {
-            SVProgressHUD.showError(withStatus: "Personal info missing.")
+            showError("Personal info missing.")
             return
         }
         guard user.paymentMethods.count > 0 else {
-            SVProgressHUD.showError(withStatus: "Please choose at least 1 payment method.")
+            showError("Please choose at least 1 payment method.")
             return
         }
         guard user.optedInToBiometricPayment else {
-            SVProgressHUD.showError(withStatus: "Please opt in to biometric payment.")
+            showError("Please opt in to biometric payment.")
             return
         }
         
-        SVProgressHUD.show()
+        let loader = showLoader(title:"Enrolling...", message: "")
         api.enroll(user: user) { (success: Bool, error: Error?, token: String?) in
+            loader.dismiss()
             guard error == nil else {
-                SVProgressHUD.showError(withStatus: "The operation could not be completed.")
+                self.showError("The operation could not be completed.")
                 return
             }
             
             guard token != nil else {
-                SVProgressHUD.showError(withStatus: "Error getting the token for this enrollment")
+                self.showError("Error getting the token for this enrollment")
                 return
             }
             
             self.user.token = token!
             AppDefaults.shared.save(user: self.user)
             self.tableView.reloadSections([Sections.logout.rawValue], with: .automatic)
-            SVProgressHUD.showSuccess(withStatus: "User enrolled with success! Now you can buy tickets for your favorite events!")
+            self.showAlert(title: "User enrolled with success!", message: "Now you can buy tickets for your favorite events!")
             self.tabBarController?.selectedIndex = 0
         }
     }
@@ -366,10 +366,10 @@ extension ProfileViewController: SwiftyCamViewControllerDelegate {
                     debugPrint("valid image")
                     self.setProfilePicture(image)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Invalid image")
+                    self.showError("Invalid image")
                 }
             } else {
-                SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
+                self.showError("Error checking the image! \nDetails: \(error!)")
             }
         }
     }

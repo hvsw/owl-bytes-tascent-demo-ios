@@ -10,7 +10,6 @@ import Foundation
 import PopupDialog
 import UIKit
 import UserNotifications
-import SVProgressHUD
 
 class EventsListViewController: UIViewController, UITableViewDataSource, EventTableViewCellDelegate, UITableViewDelegate {
     
@@ -79,19 +78,19 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     fileprivate func userConfirmedPurchaseForEvent(_ event: Event) {
         
         guard isUserEnrolled() else {
-            SVProgressHUD.showError(withStatus: "Please, enroll before purchasing tickets.")
-            tabBarController?.selectedIndex = 1
+            showError("Please, enroll before purchasing tickets.")
+            tabBarController?.selectedIndex = 2//profile tab index
             return
         }
         
-        SVProgressHUD.show(withStatus: "Processing purchase...")
+        let loader = showLoader(title:"Processing purchase...", message: "")
         self.api.buyTicket(for: event, completion: { (success: Bool, error: Error?) in
+            loader.dismiss()
             guard error == nil || !success else {
-                SVProgressHUD.showError(withStatus: "We were not able to process your purchase at this time.")
+                self.showError("We were not able to process your purchase at this time.")
                 return
             }
             self.eventTicketPurchased(event)
-            SVProgressHUD.dismiss()
         })
     }
     
@@ -103,9 +102,12 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     }
     
     fileprivate func eventTicketPurchased(_ event: Event) {
-        scheduleNotificationForPurchase(event)
-        //here we should save the purchase to user defaults
-        
+        hasNotificationPermission { (hasPermission) in
+            guard hasPermission else {
+                return
+            }
+            self.scheduleNotificationForPurchase(event)
+        }
         AppDefaults.shared.boughtTicket(for: event)
     }
     
@@ -130,6 +132,28 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
                 debugPrint(error!)
             }
         })
+    }
+    
+    fileprivate func hasNotificationPermission(_ block: @escaping (Bool) -> () ) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted: Bool, error: Error?) in
+            guard error == nil else {
+                self.showError("Error getting authorization to use notifications! \nDetails: \(error!)")
+                block(false)
+                return
+            }
+            guard granted else {
+                self.showError("You didn't authorize notification on this device. If you want you can do this later on your device's settings.")
+                block(false)
+                return
+            }
+            guard let notificationDelegate = UIApplication.shared.delegate as? UNUserNotificationCenterDelegate else {
+                debugPrint("AppDelegate has to implement UNUserNotificationCenterDelegate")
+                block(false)
+                return
+            }
+            UNUserNotificationCenter.current().delegate = notificationDelegate
+                block(true)
+        }
     }
 
     func didTapOverlayViewOn(cell: EventTableViewCell) {
