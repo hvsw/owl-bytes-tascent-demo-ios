@@ -6,9 +6,9 @@
 //  Copyright © 2017 None. All rights reserved.
 //
 
-import Fusuma
 import UIKit
 import SVProgressHUD
+import SwiftyCam
 
 private enum Sections: Int {
     case picture = 0, userData, paymentMethods, biometric, logout
@@ -122,15 +122,9 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func didTapProfilePicture() {
-        let fusuma = FusumaViewController()
-        fusuma.delegate = self
-        fusumaTintColor = .white
-        fusumaBackgroundColor = .tascent
-        fusumaBaseTintColor = .lightGray
-        fusuma.availableModes = [.camera, .library]
-        
-        statusBarHidden = true
-        present(fusuma, animated: true, completion: nil)
+        let vc = CameraViewController()
+        vc.cameraDelegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -305,11 +299,8 @@ extension ProfileViewController: UITableViewDataSource {
                 cell.textField.text = user.lastName
             case .dateOfBirth:
                 cell.caption.text = "DOB"
-                //cell.textField.keyboardType = .numberPad
                 cell.textField.placeholder = "mm/dd/yyyy"
                 cell.textField.isUserInteractionEnabled = false
-                
-                //cell.setDOBMask()
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -352,37 +343,14 @@ extension ProfileViewController: PaymentMethodViewControllerDelegate {
     }
 }
 
-// MARK: - FusumaDelegate
-extension ProfileViewController: FusumaDelegate {
-    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
-        statusBarHidden = false
-        
-        guard let image = images.first, let data = image.data else {
-            SVProgressHUD.showError(withStatus: "Error generating data from image")
-            return
-        }
-        
-        api.qualityCheck(imageData: data) { (suc: Bool, error: Error?) in
-            if error == nil {
-                if suc {
-                    debugPrint("valid image")
-                    self.setProfilePicture(image)
-                } else {
-                    SVProgressHUD.showError(withStatus: "Invalid image")
-                }
-            } else {
-                SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
-            }
-        }
-    }
+extension ProfileViewController: SwiftyCamViewControllerDelegate {
     
-    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
-        statusBarHidden = false
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake image: UIImage) {
+        navigationController?.popViewController(animated: true)
         
         guard let data = image.data else {
             return
         }
-        
         api.qualityCheck(imageData: data) { (suc: Bool, error: Error?) in
             if error == nil {
                 if suc {
@@ -395,26 +363,5 @@ extension ProfileViewController: FusumaDelegate {
                 SVProgressHUD.showError(withStatus: "Error checking the image! \nDetails: \(error!)")
             }
         }
-    }
-    
-    func fusumaCameraRollUnauthorized() {
-        debugPrint("Not authorized")
-        SVProgressHUD.showError(withStatus: "You must enable camera access in order to use this feature. Please access your settings and enable camera for this app.")
-    }
-    
-    func fusumaClosed() {
-        
-    }
-    
-    func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        
-    }
-    
-    func fusumaDismissedWithImage(_ image: UIImage, source: FusumaMode) {
-        
-    }
-    
-    func fusumaWillClosed() {
-        statusBarHidden = false
     }
 }

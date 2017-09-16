@@ -3,3 +3,4 @@ github "Orderella/PopupDialog" ~> 0.5
 github "artemkrachulov/AKMaskField"
 github "ytakzk/Fusuma"
 github "SVProgressHUD/SVProgressHUD"
+github "Awalz/SwiftyCam" ~> 2.2.1

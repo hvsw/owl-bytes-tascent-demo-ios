@@ -29,6 +29,8 @@
 		5285BB011F6B81C700569123 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285BB001F6B81C700569123 /* DatePickerCell.swift */; };
 		5285BB031F6B8E4900569123 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285BB021F6B8E4900569123 /* MonthYearPicker.swift */; };
 		5285BB051F6B912F00569123 /* MonthYearPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285BB041F6B912F00569123 /* MonthYearPickerCell.swift */; };
+		52BE0BF51F6CC57E00FCAF96 /* SwiftyCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BE0BF41F6CC57E00FCAF96 /* SwiftyCam.framework */; };
+		52BE0BF71F6CC5B100FCAF96 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BE0BF61F6CC5B100FCAF96 /* CameraViewController.swift */; };
 		6208C9841F68A89700FCEB2E /* Fusuma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6208C9831F68A89700FCEB2E /* Fusuma.framework */; };
 		6208C9861F68A8F200FCEB2E /* CameraVCDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6208C9851F68A8F200FCEB2E /* CameraVCDummy.swift */; };
 		6208C9881F68A91A00FCEB2E /* CameraDummy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6208C9871F68A91A00FCEB2E /* CameraDummy.storyboard */; };
@@ -104,6 +106,8 @@
 		5285BB001F6B81C700569123 /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		5285BB021F6B8E4900569123 /* MonthYearPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthYearPicker.swift; sourceTree = "<group>"; };
 		5285BB041F6B912F00569123 /* MonthYearPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthYearPickerCell.swift; sourceTree = "<group>"; };
+		52BE0BF41F6CC57E00FCAF96 /* SwiftyCam.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyCam.framework; path = Carthage/Build/iOS/SwiftyCam.framework; sourceTree = "<group>"; };
+		52BE0BF61F6CC5B100FCAF96 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6208C9831F68A89700FCEB2E /* Fusuma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fusuma.framework; path = Carthage/Build/iOS/Fusuma.framework; sourceTree = "<group>"; };
 		6208C9851F68A8F200FCEB2E /* CameraVCDummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVCDummy.swift; sourceTree = "<group>"; };
 		6208C9871F68A91A00FCEB2E /* CameraDummy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CameraDummy.storyboard; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			files = (
 				5263A8231F6780DB008570AC /* Alamofire.framework in Frameworks */,
 				6225C8181F68C1D6002DA837 /* SVProgressHUD.framework in Frameworks */,
+				52BE0BF51F6CC57E00FCAF96 /* SwiftyCam.framework in Frameworks */,
 				5263A8241F6780DB008570AC /* PopupDialog.framework in Frameworks */,
 				6208C9841F68A89700FCEB2E /* Fusuma.framework in Frameworks */,
 				522CF9F51F68BE5C00201F91 /* AKMaskField.framework in Frameworks */,
@@ -222,6 +227,7 @@
 		5263A8201F6780DA008570AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52BE0BF41F6CC57E00FCAF96 /* SwiftyCam.framework */,
 				6225C8171F68C1D6002DA837 /* SVProgressHUD.framework */,
 				6208C9831F68A89700FCEB2E /* Fusuma.framework */,
 				522CF9F41F68BE5C00201F91 /* AKMaskField.framework */,
@@ -264,6 +270,7 @@
 				62EB039C1F69DEB100992C9E /* Data+Extension.swift */,
 				6225C81C1F68CCBD002DA837 /* Date+Extension.swift */,
 				6208C9891F68B66200FCEB2E /* FaceDetector.swift */,
+				52BE0BF61F6CC5B100FCAF96 /* CameraViewController.swift */,
 				6225C81E1F68CCD0002DA837 /* Int+Extension.swift */,
 				62EB039A1F69DDDB00992C9E /* String+Extension.swift */,
 				522CF9FD1F68DDA200201F91 /* UIColor+Extension.swift */,
@@ -493,6 +500,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Fusuma.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AKMaskField.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyCam.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -511,6 +519,7 @@
 				62AC05751F6B607200707C48 /* HTTPStatusCodes+Extension.swift in Sources */,
 				522CF9FE1F68DDA200201F91 /* UIColor+Extension.swift in Sources */,
 				6208C9861F68A8F200FCEB2E /* CameraVCDummy.swift in Sources */,
+				52BE0BF71F6CC5B100FCAF96 /* CameraViewController.swift in Sources */,
 				6259D0131F6787980091E549 /* StubAPI.swift in Sources */,
 				62FE93391F678DD700950874 /* EventsListViewController.swift in Sources */,
 				5285BB031F6B8E4900569123 /* MonthYearPicker.swift in Sources */,
@@ -693,6 +702,7 @@
 		5263A8161F677BF0008570AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5DVJLEEZFU;
@@ -713,6 +723,7 @@
 		5263A8171F677BF0008570AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5DVJLEEZFU;
