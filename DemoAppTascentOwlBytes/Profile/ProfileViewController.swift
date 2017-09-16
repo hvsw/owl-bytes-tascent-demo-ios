@@ -147,7 +147,7 @@ class ProfileViewController: UIViewController {
     
     fileprivate func showConsentForBiometricPayment() {
         let title = "Biometric Payment"
-        let message = "Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum."
+        let message = "By \"Opting In\", you will be able to pay for goods and services at approved Points of Sale using a biometric scanner. There is no additional charge for biometric payment. The costs for goods and services will be charged to your credit card at the time of purchase, and receipts will be emailed to you."
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let optOut = UIAlertAction(title: "Opt Out", style: .cancel) { (action) in
