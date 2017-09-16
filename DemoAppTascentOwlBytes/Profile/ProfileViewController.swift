@@ -89,7 +89,13 @@ class ProfileViewController: UIViewController {
                 SVProgressHUD.showError(withStatus: "The operation could not be completed.")
                 return
             }
-            self.user.token = "this is not a real token"
+            
+            guard token != nil else {
+                SVProgressHUD.showError(withStatus: "Error getting the token for this enrollment")
+                return
+            }
+            
+            self.user.token = token!
             AppDefaults.shared.save(user: self.user)
             self.tableView.reloadSections([Sections.logout.rawValue], with: .automatic)
             SVProgressHUD.showSuccess(withStatus: "User enrolled with success! Now you can buy tickets for your favorite events!")
