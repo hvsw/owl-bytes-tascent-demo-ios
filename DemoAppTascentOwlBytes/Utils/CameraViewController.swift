@@ -22,7 +22,7 @@ class CameraViewController: SwiftyCamViewController {
         let buttonX = view.frame.width/2 - buttonWidth/2
         
         let buttonHeight: CGFloat = 80
-        let buttonY = view.frame.height - buttonHeight*2
+        let buttonY = view.frame.height - 100
         
         let buttonFrame = CGRect(x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight)
         captureButton = SwiftyCamButton(frame: buttonFrame)
@@ -35,5 +35,41 @@ class CameraViewController: SwiftyCamViewController {
         view.bringSubview(toFront: captureButton)
         
         captureButton.delegate = self
+        
+        title = "Capture face biometric"
+        
+        showInstructions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    fileprivate func showInstructions() {
+        let title = "Look at the camera with a neutral expression"
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+        let message = NSMutableAttributedString(
+            string: "Avoid:\n - Wearing sunglasses or a hat\n - Harsh lighting\n - A very bright or busy background",
+            attributes: [
+                NSParagraphStyleAttributeName: paragraphStyle,
+                NSFontAttributeName : UIFont.preferredFont(forTextStyle: UIFontTextStyle.body),
+                NSForegroundColorAttributeName : UIColor.black
+            ]
+        )
+        alert.setValue(message, forKey: "attributedMessage")
+        
+        let ok = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
