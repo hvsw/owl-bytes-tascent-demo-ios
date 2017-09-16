@@ -44,14 +44,14 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="picture" rowHeight="150" id="1hQ-BZ-jXE" customClass="ProfilePictureTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hQ-BZ-jXE" id="JH7-5w-Dml">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Lw8-eX-xwl">
-                                                    <rect key="frame" x="113" y="1" width="148" height="148"/>
+                                                    <rect key="frame" x="113.5" y="1" width="148" height="148"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="148" id="Yag-nD-OuP"/>
                                                         <constraint firstAttribute="width" secondItem="Lw8-eX-xwl" secondAttribute="height" multiplier="1:1" id="dtS-Qo-ttF"/>
@@ -68,7 +68,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="text" rowHeight="80" id="yv9-2R-e77" customClass="TextEntryTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="206" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yv9-2R-e77" id="wcd-xs-nDd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -118,7 +118,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="new_method" rowHeight="43" id="goY-w6-ybE">
-                                        <rect key="frame" x="0.0" y="286" width="375" height="43"/>
+                                        <rect key="frame" x="0.0" y="285.5" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="goY-w6-ybE" id="qau-kb-Oao">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -142,7 +142,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="payment_method" rowHeight="46" id="h75-Eh-ZTu" customClass="PaymentMethodTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="329" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="328.5" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h75-Eh-ZTu" id="iIU-bA-Lba">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
@@ -180,7 +180,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="biometric_payment" rowHeight="46" id="lgO-iG-n56" customClass="BiometricPaymentTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="375" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="374.5" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lgO-iG-n56" id="vNX-oD-GYa">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
@@ -212,14 +212,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logout" rowHeight="46" id="kzo-dA-Vw5" customClass="BiometricPaymentTableViewCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="421" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="420.5" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kzo-dA-Vw5" id="vu4-UB-gT6">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apD-Zd-dZq">
-                                                    <rect key="frame" x="159" y="12.5" width="56" height="21"/>
+                                                    <rect key="frame" x="159.5" y="12.5" width="56" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1hP-mb-1bf"/>
                                                         <constraint firstAttribute="width" constant="56" id="WaN-wR-LJ7"/>
@@ -236,7 +236,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="picker" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="picker" rowHeight="101" id="xLE-dn-7jn" customClass="DatePickerCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="467" width="375" height="101"/>
+                                        <rect key="frame" x="0.0" y="466.5" width="375" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xLE-dn-7jn" id="nbw-Ye-5y1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
@@ -270,8 +270,8 @@
                         <constraints>
                             <constraint firstItem="26p-qW-Sg8" firstAttribute="top" secondItem="Gop-F5-5lN" secondAttribute="bottom" id="BVb-iO-mZS"/>
                             <constraint firstItem="Gop-F5-5lN" firstAttribute="top" secondItem="dt1-Pr-td4" secondAttribute="bottom" constant="-20" id="Sdz-an-Dkt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Gop-F5-5lN" secondAttribute="trailing" constant="-16" id="iMz-Z5-DWO"/>
-                            <constraint firstItem="Gop-F5-5lN" firstAttribute="leading" secondItem="ekO-6x-KUo" secondAttribute="leadingMargin" constant="-16" id="v9b-Tw-E4j"/>
+                            <constraint firstAttribute="trailing" secondItem="Gop-F5-5lN" secondAttribute="trailing" id="iMz-Z5-DWO"/>
+                            <constraint firstItem="Gop-F5-5lN" firstAttribute="leading" secondItem="ekO-6x-KUo" secondAttribute="leading" id="v9b-Tw-E4j"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile_tab" id="Mjw-9M-xXP"/>

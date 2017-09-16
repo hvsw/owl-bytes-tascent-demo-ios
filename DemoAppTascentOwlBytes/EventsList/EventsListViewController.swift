@@ -47,9 +47,11 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventTableViewCell else {
             return UITableViewCell()
         }
+        
         cell.delegate = self
         cell.event = events[indexPath.row]
         cell.backgroundColor = UIColor.tascent
+        
         return cell
     }
     
@@ -77,11 +79,11 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     
     fileprivate func userConfirmedPurchaseForEvent(_ event: Event) {
         
-        guard isUserEnrolled() else {
-            showError("Please, enroll before purchasing tickets.")
-            tabBarController?.selectedIndex = 2//profile tab index
-            return
-        }
+//        guard isUserEnrolled() else {
+//            showError("Please, enroll before purchasing tickets.")
+//            tabBarController?.selectedIndex = 2//profile tab index
+//            return
+//        }
         
         let loader = showLoader(title:"Processing purchase...", message: "")
         self.api.buyTicket(for: event, completion: { (success: Bool, error: Error?) in
