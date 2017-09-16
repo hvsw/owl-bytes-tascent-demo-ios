@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    fileprivate let api: APIClientProtocol = RestAPI()
+    fileprivate let api: APIClientProtocol = StubAPI()
     
     fileprivate var isPickerHidden = true {
         didSet {
@@ -86,12 +86,14 @@ class ProfileViewController: UIViewController {
         SVProgressHUD.show()
         api.enroll(user: user) { (success, error) in
             guard error == nil else {
-                SVProgressHUD.showError(withStatus: error?.localizedDescription)
+                SVProgressHUD.showError(withStatus: "The operation could not be completed.")
                 return
             }
+            self.user.token = "this is not a real token"
             AppDefaults.shared.save(user: self.user)
             self.tableView.reloadSections([Sections.logout.rawValue], with: .automatic)
-            SVProgressHUD.showSuccess(withStatus: "User enrolled with success!")
+            SVProgressHUD.showSuccess(withStatus: "User enrolled with success! Now you can buy tickets for your favorite events!")
+            self.tabBarController?.selectedIndex = 0
         }
     }
     
@@ -126,6 +128,7 @@ class ProfileViewController: UIViewController {
         fusumaBackgroundColor = .tascent
         fusumaBaseTintColor = .lightGray
         fusuma.availableModes = [.camera, .library]
+        
         statusBarHidden = true
         present(fusuma, animated: true, completion: nil)
     }
