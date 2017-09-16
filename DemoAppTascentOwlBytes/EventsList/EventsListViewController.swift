@@ -14,17 +14,9 @@ import SVProgressHUD
 
 class EventsListViewController: UIViewController, UITableViewDataSource, EventTableViewCellDelegate, UITableViewDelegate {
     
-    private let events = [
-        Event(name: "Foo Fighters at Madison Square Garden", image: UIImage(named: "ff")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
-        Event(name: "Tomorrowland 2017", image: UIImage(named: "tomorrowland")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
-        Event(name: "Apple Special Event 2017", image: UIImage(named: "apple")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
-        Event(name: "Google I/O 2017", image: UIImage(named: "google")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
-        Event(name: "Facebook F8 2017", image: UIImage(named: "fb")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
-        Event(name: "FIFA World Cup Russia 2018", image: UIImage(named: "wc")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
-        Event(name: "Olympics Tokyo 2020", image: UIImage(named: "olympics")!, price: Float(Int.randomIntFrom(start: 100, to: 1000))),
-    ]
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    private var events = allEvents
     
     private let api: APIClientProtocol = StubAPI()
     
@@ -86,11 +78,11 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     
     fileprivate func userConfirmedPurchaseForEvent(_ event: Event) {
         
-        guard isUserEnrolled() else {
-            SVProgressHUD.showError(withStatus: "Please, enroll before purchasing tickets.")
-            tabBarController?.selectedIndex = 1
-            return
-        }
+//        guard isUserEnrolled() else {
+//            SVProgressHUD.showError(withStatus: "Please, enroll before purchasing tickets.")
+//            tabBarController?.selectedIndex = 1
+//            return
+//        }
         
         SVProgressHUD.show(withStatus: "Processing purchase...")
         self.api.buyTicket(for: event, completion: { (success: Bool, error: Error?) in
@@ -113,6 +105,8 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     fileprivate func eventTicketPurchased(_ event: Event) {
         scheduleNotificationForPurchase(event)
         //here we should save the purchase to user defaults
+        
+        AppDefaults.shared.boughtTicket(for: event)
     }
     
     fileprivate func scheduleNotificationForPurchase(_ event: Event) {

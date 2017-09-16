@@ -50,6 +50,8 @@
 		62AC05731F6B605200707C48 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC05721F6B605200707C48 /* HTTPStatusCodes.swift */; };
 		62AC05751F6B607200707C48 /* HTTPStatusCodes+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC05741F6B607200707C48 /* HTTPStatusCodes+Extension.swift */; };
 		62AC05771F6B6B9C00707C48 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC05761F6B6B9C00707C48 /* Array+Extension.swift */; };
+		62BFAE021F6CE5FC0072CC61 /* MyTickets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BFAE011F6CE5FC0072CC61 /* MyTickets.storyboard */; };
+		62BFAE041F6CE64D0072CC61 /* MyTicketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAE031F6CE64D0072CC61 /* MyTicketsViewController.swift */; };
 		62D9DF731F6B1A61009C7C5B /* face_iris_fingerprint.json in Resources */ = {isa = PBXBuildFile; fileRef = 62D9DF711F6B1A61009C7C5B /* face_iris_fingerprint.json */; };
 		62D9DF741F6B1A61009C7C5B /* face.json in Resources */ = {isa = PBXBuildFile; fileRef = 62D9DF721F6B1A61009C7C5B /* face.json */; };
 		62EB03991F69DDC600992C9E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EB03981F69DDC600992C9E /* UIImage+Extension.swift */; };
@@ -127,6 +129,8 @@
 		62AC05721F6B605200707C48 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		62AC05741F6B607200707C48 /* HTTPStatusCodes+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPStatusCodes+Extension.swift"; sourceTree = "<group>"; };
 		62AC05761F6B6B9C00707C48 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		62BFAE011F6CE5FC0072CC61 /* MyTickets.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyTickets.storyboard; sourceTree = "<group>"; };
+		62BFAE031F6CE64D0072CC61 /* MyTicketsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTicketsViewController.swift; sourceTree = "<group>"; };
 		62D9DF711F6B1A61009C7C5B /* face_iris_fingerprint.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = face_iris_fingerprint.json; sourceTree = "<group>"; };
 		62D9DF721F6B1A61009C7C5B /* face.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = face.json; sourceTree = "<group>"; };
 		62EB03981F69DDC600992C9E /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				62BA78631F69C85600B00237 /* Resources */,
 				6225C81B1F68CCAB002DA837 /* Utils */,
 				5263A7F41F677BF0008570AC /* Main.storyboard */,
+				62BFAE001F6CE5B90072CC61 /* MyTickets */,
 			);
 			path = DemoAppTascentOwlBytes;
 			sourceTree = "<group>";
@@ -351,6 +356,15 @@
 			path = "Camera dummy";
 			sourceTree = "<group>";
 		};
+		62BFAE001F6CE5B90072CC61 /* MyTickets */ = {
+			isa = PBXGroup;
+			children = (
+				62BFAE011F6CE5FC0072CC61 /* MyTickets.storyboard */,
+				62BFAE031F6CE64D0072CC61 /* MyTicketsViewController.swift */,
+			);
+			path = MyTickets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -461,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5263A7FB1F677BF0008570AC /* LaunchScreen.storyboard in Resources */,
+				62BFAE021F6CE5FC0072CC61 /* MyTickets.storyboard in Resources */,
 				5263A7F81F677BF0008570AC /* Assets.xcassets in Resources */,
 				5263A8291F678980008570AC /* Profile.storyboard in Resources */,
 				62D9DF741F6B1A61009C7C5B /* face.json in Resources */,
@@ -521,6 +536,7 @@
 				6208C9861F68A8F200FCEB2E /* CameraVCDummy.swift in Sources */,
 				52BE0BF71F6CC5B100FCAF96 /* CameraViewController.swift in Sources */,
 				6259D0131F6787980091E549 /* StubAPI.swift in Sources */,
+				62BFAE041F6CE64D0072CC61 /* MyTicketsViewController.swift in Sources */,
 				62FE93391F678DD700950874 /* EventsListViewController.swift in Sources */,
 				5285BB031F6B8E4900569123 /* MonthYearPicker.swift in Sources */,
 				6225C81F1F68CCD0002DA837 /* Int+Extension.swift in Sources */,

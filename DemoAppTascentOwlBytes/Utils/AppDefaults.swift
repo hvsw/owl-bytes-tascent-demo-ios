@@ -14,6 +14,21 @@ class AppDefaults {
     
     private init() { }
     
+    func boughtTicket(for event: Event) {
+        if var bought = UserDefaults.standard.array(forKey: "Bought") as? [String] {
+            bought.append(event.name)
+            UserDefaults.standard.set(bought, forKey: "Bought")
+        } else {
+            UserDefaults.standard.set([event.name], forKey: "Bought")
+        }
+        UserDefaults.standard.synchronize()
+        
+    }
+    
+    func getBoughtTickets() -> [String] {
+        return UserDefaults.standard.array(forKey: "Bought") as? [String] ?? [""]
+    }
+    
     func getToken() -> String? {
         guard let user = currentUser() else {return nil}
         return user.token
