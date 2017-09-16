@@ -68,7 +68,6 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
                 return headers
                 
             case .enrollmentResult:
-//                headers.removeValue(forKey: "Authorization")
                 headers["Accept"] = "application/vnd.tascent-bio.v1+json"
                 return headers
             }
@@ -103,16 +102,16 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
     func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {
         let soap = generateSoapString(imageId: "1", imageContent: imageData.base64)
         var request = URLRequest(url: URL(string: "http://52.59.48.9:8080/")!)
-//        request.
+        //        request.
     }
     
-    func getEnrollmentResult(for token: String, completion: @escaping ((EnrollmentStatus?, Error?) -> ())) {
-        //        curl -u apiuser:aRT98dPogR -k -H "Content-Type: application/vnd.tascent-bio.v1+json" -X GET https://<TIP_IP>:9090/enrollment-results/<token>/1
-        let endpoint = Endpoint.enrollmentResult(token)
+    //        curl -u apiuser:aRT98dPogR -k -H "Content-Type: application/vnd.tascent-bio.v1+json" -X GET https://18.194.82.72:9090/enrollment-results/<token>/1
+    func getEnrollmentResult(for user: User, completion: @escaping ((EnrollmentStatus?, Error?) -> ())) {
+        let endpoint = Endpoint.enrollmentResult(user.token)
         
         var request = URLRequest(url: try! endpoint.asURL())
         var headers = endpoint.headers
-//        headers?.removeValue(forKey: "Authorization")
+        //        headers?.removeValue(forKey: "Authorization")
         request.allHTTPHeaderFields = headers
         request.httpMethod = "GET"
         
@@ -141,7 +140,7 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
                             completion(nil, "BAD REQUEST\nResponse: \n\(response?.debugDescription ?? "Empty")")
                             
                         case .notFound:
-                            completion(nil, "Enrollment token '\(token)' not found!")
+                            completion(nil, "Enrollment token '\(user.token)' not found!")
                             
                         default:
                             completion(nil, "Unexpected status code \(status)(\(status.rawValue))\nResponse: \n\(response?.debugDescription ?? "Empty")")
@@ -157,15 +156,16 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
             }
         }
         task.resume()
-
+        
     }
     
-    func enroll(user: User, completion: @escaping BoolErrorBlock) {
+    //    curl -u apiuser:aRT98dPogR -k -H "Content-Type: application/vnd.tascent-bio.v1+json" -X POST -d @face.json https://18.194.82.72:8080/enroll/
+    func enroll(user: User, completion: @escaping EnrollmentBlock) {
         let endpoint = Endpoint.enroll
         
         let jsonData = try! Data(contentsOf: Bundle.main.url(forResource: "face", withExtension: "json")!)
         var json = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
-        json["token"] = "526d730f1c804b30a873b4d6efe8ec87"
+        //        json["token"] = "526d730f1c804b30a873b4d6efe8ec87"
         
         var request = URLRequest(url: try! endpoint.asURL())
         request.allHTTPHeaderFields = endpoint.headers
@@ -180,28 +180,27 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
                     case 200:
                         do {
                             if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: String], let token = json["value"] {
-                                AppDefaults.shared.set(token: token)
-                                completion(true, nil)
+                                completion(true, nil, token)
                             } else {
-                                completion(false, "Serialization error")
+                                completion(false, "Serialization error", nil)
                             }
                         } catch {
-                            completion(false, "Error in JSONSerialization")
+                            completion(false, "Error in JSONSerialization", nil)
                         }
                         
                     case 400:
-                        completion(false, "BAD REQUEST\nResponse: \n\(response?.debugDescription ?? "Empty")")
+                        completion(false, "BAD REQUEST\nResponse: \n\(response?.debugDescription ?? "Empty")", nil)
                         
                     default:
-                        completion(false, "Unexpected status code \(httpResponse.statusCode)\nResponse: \n\(response?.debugDescription ?? "Empty")")
+                        completion(false, "Unexpected status code \(httpResponse.statusCode)\nResponse: \n\(response?.debugDescription ?? "Empty")", nil)
                     }
                     
                     
                 } else {
-                    completion(false, error!)
+                    completion(false, error!, nil)
                 }
             } else {
-                completion(false, "Error casting to HTTPURLResponse")
+                completion(false, "Error casting to HTTPURLResponse", nil)
             }
         }
         task.resume()
@@ -222,16 +221,16 @@ class RestAPI: NSObject, APIClientProtocol, URLSessionDelegate {
 
 
 // For Swift 3 and Alamofire 4.0
-open class MyServerTrustPolicyManager: ServerTrustPolicyManager {
-    
-    // Override this function in order to trust any self-signed https
-    open override func serverTrustPolicy(forHost host: String) -> ServerTrustPolicy? {
-        return ServerTrustPolicy.disableEvaluation
-        
-        // or, if `host` contains substring, return `disableEvaluation`
-        // Ex: host contains `my_company.com`, then trust it.
-    }
-}
+//open class MyServerTrustPolicyManager: ServerTrustPolicyManager {
+//
+//    // Override this function in order to trust any self-signed https
+//    open override func serverTrustPolicy(forHost host: String) -> ServerTrustPolicy? {
+//        return ServerTrustPolicy.disableEvaluation
+//
+//        // or, if `host` contains substring, return `disableEvaluation`
+//        // Ex: host contains `my_company.com`, then trust it.
+//    }
+//}
 
 //extension Dictionary where Key: String, Element: Any {
 //    var jsonData: Data {

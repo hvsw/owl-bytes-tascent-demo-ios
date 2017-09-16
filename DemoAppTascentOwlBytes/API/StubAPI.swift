@@ -9,9 +9,7 @@
 import Foundation
 
 class StubAPI: APIClientProtocol {
-    func getEnrollmentResult(for token: String, completion: @escaping (EnrollmentResultBlock)) {
-        
-    }
+    
     private let delay = 0.5
     
     func qualityCheck(imageData: Data, completion: @escaping BoolErrorBlock) {
@@ -20,15 +18,21 @@ class StubAPI: APIClientProtocol {
         }
     }
     
-    func enroll(user: User, completion: @escaping BoolErrorBlock) {
+    func enroll(user: User, completion: @escaping EnrollmentBlock) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            completion(true, nil)
+            completion(true, nil, "TOKEN MOCADO")
         }
     }
     
     func buyTicket(for: Event, completion: @escaping BoolErrorBlock) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             completion(true, nil)
+        }
+    }
+    
+    func getEnrollmentResult(for user: User, completion: @escaping (EnrollmentResultBlock)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            completion(EnrollmentStatus.enrolled, nil)
         }
     }
 }

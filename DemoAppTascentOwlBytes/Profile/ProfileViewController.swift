@@ -84,11 +84,18 @@ class ProfileViewController: UIViewController {
         }
         
         SVProgressHUD.show()
-        api.enroll(user: user) { (success, error) in
+        api.enroll(user: user) { (success: Bool, error: Error?, token: String?) in
             guard error == nil else {
                 SVProgressHUD.showError(withStatus: error?.localizedDescription)
                 return
             }
+            
+            guard token != nil else {
+                SVProgressHUD.showError(withStatus: "Error getting the token for this enrollment")
+                return
+            }
+            
+            self.user.token = token!
             AppDefaults.shared.save(user: self.user)
             self.tableView.reloadSections([Sections.logout.rawValue], with: .automatic)
             SVProgressHUD.showSuccess(withStatus: "User enrolled with success!")
