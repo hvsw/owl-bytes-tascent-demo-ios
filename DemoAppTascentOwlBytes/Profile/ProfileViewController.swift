@@ -85,6 +85,7 @@ class ProfileViewController: UIViewController {
         let loader = showLoader(title:"Enrolling...", message: "")
         api.enroll(user: user) { (success: Bool, error: Error?, token: String?) in
             loader.dismiss()
+            self.isPickerHidden = true
             guard error == nil else {
                 self.showError("The operation could not be completed.")
                 return
@@ -115,9 +116,11 @@ class ProfileViewController: UIViewController {
         let lastNameCell = tableView.cellForRow(at: lastNamePath) as! TextEntryTableViewCell
         user.lastName = lastNameCell.textField.text ?? ""
         
-        //let dobPath = IndexPath(row: UserDataSection.dateOfBirth.rawValue, section: Sections.userData.rawValue)
-        //let dobCell = tableView.cellForRow(at: dobPath) as! TextEntryTableViewCell
-        //user.dateOfBirth = dobCell.textField.text ?? ""
+        let path = IndexPath(row: UserDataSection.picker.rawValue, section: Sections.userData.rawValue)
+        guard let cell = tableView.cellForRow(at: path) as? DatePickerCell else {return}
+        let date = cell.datePicker.date
+        user.dateOfBirth = date
+        tableView.reloadSections([Sections.userData.rawValue], with: .automatic)
     }
     
     fileprivate func didTapNewPaymentMethod() {
@@ -302,17 +305,19 @@ extension ProfileViewController: UITableViewDataSource {
                 cell.caption.text = "First Name"
                 cell.textField.placeholder = "Required"
                 cell.textField.text = user.firstName
+                cell.textField.isUserInteractionEnabled = true
             case .lastName:
                 cell.caption.text = "Last Name"
                 cell.textField.placeholder = "Required"
                 cell.textField.text = user.lastName
+                cell.textField.isUserInteractionEnabled = true
             case .dateOfBirth:
                 cell.caption.text = "DOB"
-                cell.textField.placeholder = "mm/dd/yyyy"
+                cell.textField.placeholder = "Date of Birth"
                 cell.textField.isUserInteractionEnabled = false
-                
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM/dd/yyyy"
+                dateFormatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
+//                dateFormatter.dateFormat = ""
                 if let date = user.dateOfBirth {
                     let dateString = dateFormatter.string(from: date)
                     cell.textField.text = dateString
