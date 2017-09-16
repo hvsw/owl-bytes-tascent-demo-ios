@@ -235,7 +235,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="picker" rowHeight="101" id="xLE-dn-7jn" customClass="DatePickerCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="picker" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="picker" rowHeight="101" id="xLE-dn-7jn" customClass="DatePickerCell" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="467" width="375" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xLE-dn-7jn" id="nbw-Ye-5y1">
@@ -395,7 +395,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="profile_placeholder" width="386" height="411"/>
+        <image name="profile_placeholder" width="388" height="413"/>
         <image name="profile_tab" width="25" height="25"/>
     </resources>
 </document>

@@ -284,6 +284,9 @@ extension ProfileViewController: UITableViewDataSource {
         case .userData:
             guard indexPath.row != UserDataSection.picker.rawValue else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "picker", for: indexPath) as? DatePickerCell else {return UITableViewCell()}
+                if let date = user.dateOfBirth {
+                    cell.datePicker.setDate(date, animated: false)
+                }
                 return cell
             }
             guard let cellType = UserDataSection(rawValue: indexPath.row) else {return UITableViewCell()}
