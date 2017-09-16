@@ -48,7 +48,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
             return UITableViewCell()
         }
         
-        cell.delegate = self
+//        cell.delegate = self
         cell.event = events[indexPath.row]
         cell.backgroundColor = UIColor.tascent
         
