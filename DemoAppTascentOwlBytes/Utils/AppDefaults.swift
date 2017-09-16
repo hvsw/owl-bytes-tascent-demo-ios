@@ -58,4 +58,9 @@ class AppDefaults {
         }
         return user
     }
+    
+    func resetAppDefaults() {
+        UserDefaults.standard.removeObject(forKey: "currentUser")
+        UserDefaults.standard.removeObject(forKey: "Bought")
+    }
 }

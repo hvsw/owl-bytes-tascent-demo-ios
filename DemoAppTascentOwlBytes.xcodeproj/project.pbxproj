@@ -204,11 +204,11 @@
 				62BA78641F69C87900B00237 /* Camera dummy */,
 				6259D01B1F6788EF0091E549 /* EventsList */,
 				6259D0181F6788870091E549 /* Model */,
+				62BFAE001F6CE5B90072CC61 /* MyTickets */,
 				5263A8271F678962008570AC /* Profile */,
 				62BA78631F69C85600B00237 /* Resources */,
 				6225C81B1F68CCAB002DA837 /* Utils */,
 				5263A7F41F677BF0008570AC /* Main.storyboard */,
-				62BFAE001F6CE5B90072CC61 /* MyTickets */,
 			);
 			path = DemoAppTascentOwlBytes;
 			sourceTree = "<group>";
@@ -247,12 +247,12 @@
 		5263A8271F678962008570AC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				62D9DF711F6B1A61009C7C5B /* face_iris_fingerprint.json */,
-				62D9DF721F6B1A61009C7C5B /* face.json */,
 				5263A82C1F678D9C008570AC /* TableViewCells */,
 				522CF9FB1F68C2AA00201F91 /* PaymentMethodViewController.swift */,
 				5263A8281F678980008570AC /* Profile.storyboard */,
 				5263A82A1F678AB0008570AC /* ProfileViewController.swift */,
+				62D9DF721F6B1A61009C7C5B /* face.json */,
+				62D9DF711F6B1A61009C7C5B /* face_iris_fingerprint.json */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -260,12 +260,12 @@
 		5263A82C1F678D9C008570AC /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */,
-				5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */,
 				5285BAFC1F6B511700569123 /* BiometricPaymentTableViewCell.swift */,
-				5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */,
 				5285BB001F6B81C700569123 /* DatePickerCell.swift */,
 				5285BB041F6B912F00569123 /* MonthYearPickerCell.swift */,
+				522CF9F01F68B2AD00201F91 /* PaymentMethodTableViewCell.swift */,
+				5263A82D1F678DC3008570AC /* ProfilePictureTableViewCell.swift */,
+				5263A82F1F67995B008570AC /* TextEntryTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -274,19 +274,19 @@
 			isa = PBXGroup;
 			children = (
 				62AC05711F6B604500707C48 /* HTTPStatusCode */,
+				6236B18E1F6B3DA90053E915 /* AppDefaults.swift */,
+				62AC05761F6B6B9C00707C48 /* Array+Extension.swift */,
+				52BE0BF61F6CC5B100FCAF96 /* CameraViewController.swift */,
 				62EB039C1F69DEB100992C9E /* Data+Extension.swift */,
 				6225C81C1F68CCBD002DA837 /* Date+Extension.swift */,
 				6208C9891F68B66200FCEB2E /* FaceDetector.swift */,
-				52BE0BF61F6CC5B100FCAF96 /* CameraViewController.swift */,
 				6225C81E1F68CCD0002DA837 /* Int+Extension.swift */,
+				5285BB021F6B8E4900569123 /* MonthYearPicker.swift */,
 				62EB039A1F69DDDB00992C9E /* String+Extension.swift */,
 				522CF9FD1F68DDA200201F91 /* UIColor+Extension.swift */,
-				52BE0BF81F6D6D6600FCAF96 /* UIViewController+Extension.swift */,
 				62EB03981F69DDC600992C9E /* UIImage+Extension.swift */,
-				5285BB021F6B8E4900569123 /* MonthYearPicker.swift */,
+				52BE0BF81F6D6D6600FCAF96 /* UIViewController+Extension.swift */,
 				629479891F6A093800CA085F /* UNNotificationAttachment.swift */,
-				6236B18E1F6B3DA90053E915 /* AppDefaults.swift */,
-				62AC05761F6B6B9C00707C48 /* Array+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -316,10 +316,11 @@
 		62AC05711F6B604500707C48 /* HTTPStatusCode */ = {
 			isa = PBXGroup;
 			children = (
-				62AC05721F6B605200707C48 /* HTTPStatusCodes.swift */,
 				62AC05741F6B607200707C48 /* HTTPStatusCodes+Extension.swift */,
+				62AC05721F6B605200707C48 /* HTTPStatusCodes.swift */,
 			);
 			name = HTTPStatusCode;
+			path = HTTPStatusCode;
 			sourceTree = "<group>";
 		};
 		62BA78611F69C82900B00237 /* API */ = {

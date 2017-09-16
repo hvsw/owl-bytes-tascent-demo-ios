@@ -78,7 +78,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ft8-Ad-DEr">
                                                             <rect key="frame" x="8" y="4" width="343" height="35.5"/>
-                                                            <state key="normal" title="BUY">
+                                                            <state key="normal" title="SHOW INFO">
                                                                 <color key="titleColor" red="0.24310663339999999" green="0.24315488339999999" blue="0.2431035936" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>

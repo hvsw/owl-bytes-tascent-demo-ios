@@ -71,7 +71,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
             self.userConfirmedPurchaseForEvent(event)
         }
         popup.addButton(openSiteButton)
-            
+        
         present(popup, animated: true, completion: nil)
     }
     
@@ -152,10 +152,10 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
                 return
             }
             UNUserNotificationCenter.current().delegate = notificationDelegate
-                block(true)
+            block(true)
         }
     }
-
+    
     func didTapOverlayViewOn(cell: EventTableViewCell) {
         if let evt = cell.event {
             let title = evt.name

@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import PopupDialog
 import UIKit
 
-class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EventTableViewCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -53,6 +54,7 @@ class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableV
         
         cell.event = events?[indexPath.row]
         cell.backgroundColor = UIColor.tascent
+        cell.delegate = self
         
         return cell
     }
@@ -67,6 +69,52 @@ class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    
+    func didTapBuyAt(cell: EventTableViewCell) {
+        guard let event = cell.event else { return }
+        showInfo(for: event)
+    }
+    
+    func didTapOverlayViewOn(cell: EventTableViewCell) {
+        guard let event = cell.event else { return }
+        showInfo(for: event)
+    }
+    
+    private func showInfo(for event: Event) {
+        guard let data = event.name.data(using: String.Encoding.isoLatin1, allowLossyConversion: false) else {
+            debugPrint("Error getting the data")
+            return
+        }
+        
+        guard let filter = CIFilter(name: "CIQRCodeGenerator") else {
+            debugPrint("Error creating the filter")
+            return
+        }
+        
+        filter.setValue(data, forKey: "inputMessage")
+        filter.setValue("Q", forKey: "inputCorrectionLevel")
+        
+        guard let qrCodeImage = filter.outputImage else {
+            debugPrint("Error generating CIImage")
+            return
+        }
+        
+        let scaleX = 1000 / qrCodeImage.extent.size.width
+        let scaleY = 1000 / qrCodeImage.extent.size.height
+        
+        let transformedImage = qrCodeImage.applying(CGAffineTransform(scaleX: scaleX, y: scaleY))
+        
+        
+        let title = "Purchase confirmation for '\(event.name)'"
+        let message = "Present this QR Code to have access to the event"
+        let image = UIImage(ciImage: transformedImage)
+        
+        let popup = PopupDialog(title: title, message: message, image: image)
+        let closeButton = CancelButton(title: "CLOSE", action: nil)
+        popup.addButton(closeButton)
+        
+        present(popup, animated: true, completion: nil)
     }
 }
 
