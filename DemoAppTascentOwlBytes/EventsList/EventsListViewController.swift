@@ -159,6 +159,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     }
     
     func didTapOverlayViewOn(cell: EventTableViewCell) {
+        return
         if let evt = cell.event {
             let title = evt.name
             let message = "This event is happening and will be amazing. Don't lose this chance, buy it now with Tascent!\nTap BUY below if you want to buy a ticket to go!"
