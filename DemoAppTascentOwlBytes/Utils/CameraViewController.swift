@@ -53,23 +53,28 @@ class CameraViewController: SwiftyCamViewController {
     
     fileprivate func showInstructions() {
         let title = "Look at the camera with a neutral expression"
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let message = "Avoid:" +
+            "\n• Wearing sunglasses or a hat" +
+            "\n• Harsh lighting" +
+            "\n• A very bright or busy background"
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.left
-        let message = NSMutableAttributedString(
-            string: "Avoid:\n - Wearing sunglasses or a hat\n - Harsh lighting\n - A very bright or busy background",
+        paragraphStyle.alignment = NSTextAlignment.natural
+        let messageText = NSMutableAttributedString(
+            string: message,
             attributes: [
                 NSParagraphStyleAttributeName: paragraphStyle,
                 NSFontAttributeName : UIFont.preferredFont(forTextStyle: UIFontTextStyle.body),
-                NSForegroundColorAttributeName : UIColor.black
+                NSForegroundColorAttributeName : UIColor.tascent
             ]
         )
-        alert.setValue(message, forKey: "attributedMessage")
         
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet )
         let ok = UIAlertAction(title: "Ok", style: .default)
         alert.addAction(ok)
         
-        present(alert, animated: true, completion: nil)
+        alert.setValue(messageText, forKey: "attributedMessage")
+        present(alert, animated: true)
     }
 }
