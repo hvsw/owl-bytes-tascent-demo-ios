@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -78,23 +77,12 @@
                                                     <rect key="frame" x="8" y="158" width="398" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ Bio-Payment Enabled" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dew-ku-1Pc">
-                                                            <rect key="frame" x="28" y="12" width="148" height="21"/>
+                                                            <rect key="frame" x="8" y="14" width="148" height="16"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="D15-9I-rJ7"/>
-                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                             <color key="textColor" red="0.096373595297336578" green="0.65709078311920166" blue="0.091337479650974274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zy6-D0-pPs">
-                                                            <rect key="frame" x="8" y="14" width="16" height="16"/>
-                                                            <color key="backgroundColor" red="0.096373595297336578" green="0.65709078311920166" blue="0.091337479650974274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Zy6-D0-pPs" secondAttribute="height" multiplier="1:1" id="yc7-Ml-2SX"/>
-                                                                <constraint firstAttribute="width" constant="16" id="z1k-k5-YOk"/>
-                                                            </constraints>
-                                                        </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ft8-Ad-DEr">
                                                             <rect key="frame" x="322" y="7" width="68" height="30"/>
                                                             <constraints>
@@ -111,11 +99,9 @@
                                                     <color key="backgroundColor" red="0.976352632" green="0.97645848989999995" blue="0.98043638470000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="dew-ku-1Pc" firstAttribute="centerY" secondItem="Zy6-D0-pPs" secondAttribute="centerY" id="4Bp-cm-5EW"/>
-                                                        <constraint firstItem="dew-ku-1Pc" firstAttribute="leading" secondItem="Zy6-D0-pPs" secondAttribute="trailing" constant="4" id="WNC-9Y-DQs"/>
+                                                        <constraint firstItem="dew-ku-1Pc" firstAttribute="leading" secondItem="Ylk-Gh-I2j" secondAttribute="leading" constant="8" id="Mnq-U1-xwD"/>
+                                                        <constraint firstItem="dew-ku-1Pc" firstAttribute="centerY" secondItem="Ylk-Gh-I2j" secondAttribute="centerY" id="RCH-NZ-pvX"/>
                                                         <constraint firstItem="Ft8-Ad-DEr" firstAttribute="centerY" secondItem="Ylk-Gh-I2j" secondAttribute="centerY" id="p0Z-iL-7BL"/>
-                                                        <constraint firstItem="Zy6-D0-pPs" firstAttribute="top" secondItem="Ylk-Gh-I2j" secondAttribute="top" constant="14" id="p1P-W4-NRQ"/>
-                                                        <constraint firstItem="Zy6-D0-pPs" firstAttribute="leading" secondItem="Ylk-Gh-I2j" secondAttribute="leading" constant="8" id="pT7-FI-feg"/>
                                                         <constraint firstAttribute="trailing" secondItem="Ft8-Ad-DEr" secondAttribute="trailing" constant="8" id="rXa-vD-mL9"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -137,7 +123,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bioPayCaption" destination="dew-ku-1Pc" id="jU1-0B-cCh"/>
-                                            <outlet property="bioPayRoundView" destination="Zy6-D0-pPs" id="FTA-pn-tZq"/>
                                             <outlet property="bottomView" destination="Ylk-Gh-I2j" id="khM-Jf-lfg"/>
                                             <outlet property="eventImageView" destination="aOq-ls-tJU" id="mPB-qn-zOX"/>
                                             <outlet property="eventNameLabel" destination="1Ma-Gr-Zpn" id="ghD-pf-Jh2"/>
