@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ogj-tN-9Xg" id="fTm-mj-EF8">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="209.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqj-HM-DZO" userLabel="Top view">
@@ -75,10 +75,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMf-gF-nbm" userLabel="Bottom view" customClass="RoundedView" customModule="DemoAppTascentOwlBytes" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="158" width="398" height="44"/>
+                                                    <rect key="frame" x="8" y="158" width="398" height="43"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEj-4p-lwE">
-                                                            <rect key="frame" x="8" y="4" width="382" height="36"/>
+                                                            <rect key="frame" x="8" y="4" width="382" height="35"/>
                                                             <state key="normal" title="BUY">
                                                                 <color key="titleColor" red="0.24310663339999999" green="0.24315488339999999" blue="0.2431035936" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>

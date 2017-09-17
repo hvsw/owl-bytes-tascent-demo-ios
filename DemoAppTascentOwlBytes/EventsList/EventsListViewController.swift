@@ -79,11 +79,11 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     
     fileprivate func userConfirmedPurchaseForEvent(_ event: Event) {
         
-//        guard isUserEnrolled() else {
-//            showError("Please, enroll before purchasing tickets.")
-//            tabBarController?.selectedIndex = 2//profile tab index
-//            return
-//        }
+        guard isUserEnrolled() else {
+            showError("Please, enroll before purchasing tickets.")
+            tabBarController?.selectedIndex = 2//profile tab index
+            return
+        }
         
         let loader = showLoader(title:"Processing purchase...", message: "")
         self.api.buyTicket(for: event, completion: { (success: Bool, error: Error?) in
@@ -116,7 +116,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     fileprivate func scheduleNotificationForPurchase(_ event: Event) {
         let content = UNMutableNotificationContent()
         content.title = "Ticket bought for \(event.name)"
-        var body = "Your purchase was completed.\n \(String(format: "%@ \n $ %.2f", event.name, event.price))"
+        var body = "Your purchase was completed."
         if let user = AppDefaults.shared.currentUser() {
             if user.optedInToBiometricPayment {
                 body += " \n Biometric Payment enabled"
