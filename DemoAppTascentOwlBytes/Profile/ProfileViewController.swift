@@ -99,7 +99,7 @@ class ProfileViewController: UIViewController {
             self.user.token = token!
             AppDefaults.shared.save(user: self.user)
             self.tableView.reloadSections([Sections.logout.rawValue], with: .automatic)
-            self.showAlert(title: "User enrolled with success!", message: "Now you can buy tickets for your favorite events!")
+            self.showAlert(title: "Enrollment successful!")
             self.tabBarController?.selectedIndex = 0
         }
     }
@@ -150,7 +150,11 @@ class ProfileViewController: UIViewController {
     
     fileprivate func showConsentForBiometricPayment() {
         let title = "Biometric Payment"
-        let message = "By \"Opting In\", you will be able to pay for goods and services at approved Points of Sale using a biometric scanner. There is no additional charge for biometric payment. The costs for goods and services will be charged to your credit card at the time of purchase, and receipts will be emailed to you."
+        let message = "By \"Opting In\", you will be able to pay for goods and services at approved Points of Sale using a biometric scanner." +
+        "\n• There is no additional charge for biometric payment." +
+        "\n• The costs for goods and services will be charged to your credit card at the time of purchase." +
+        "\n• Receipts will be emailed to you." +
+        "\n• You can Opt Out at any time."
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let optOut = UIAlertAction(title: "Opt Out", style: .cancel) { (action) in
