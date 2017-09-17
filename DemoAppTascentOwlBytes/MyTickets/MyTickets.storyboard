@@ -84,7 +84,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ft8-Ad-DEr">
-                                                            <rect key="frame" x="322" y="7" width="68" height="30"/>
+                                                            <rect key="frame" x="318" y="7" width="68" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="Qxi-uC-sZx"/>
                                                             </constraints>
@@ -102,7 +102,7 @@
                                                         <constraint firstItem="dew-ku-1Pc" firstAttribute="leading" secondItem="Ylk-Gh-I2j" secondAttribute="leading" constant="8" id="Mnq-U1-xwD"/>
                                                         <constraint firstItem="dew-ku-1Pc" firstAttribute="centerY" secondItem="Ylk-Gh-I2j" secondAttribute="centerY" id="RCH-NZ-pvX"/>
                                                         <constraint firstItem="Ft8-Ad-DEr" firstAttribute="centerY" secondItem="Ylk-Gh-I2j" secondAttribute="centerY" id="p0Z-iL-7BL"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Ft8-Ad-DEr" secondAttribute="trailing" constant="8" id="rXa-vD-mL9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Ft8-Ad-DEr" secondAttribute="trailing" constant="12" id="rXa-vD-mL9"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

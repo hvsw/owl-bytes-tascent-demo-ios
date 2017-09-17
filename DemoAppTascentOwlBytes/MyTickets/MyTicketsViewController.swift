@@ -56,9 +56,9 @@ class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableV
         cell.backgroundColor = UIColor.tascent
         cell.delegate = self
         
-        cell.bioPayRoundView.layer.cornerRadius = cell.bioPayRoundView.frame.size.height/2
-        cell.bioPayRoundView.backgroundColor = UIColor.bioPay
-        cell.bioPayCaption.textColor = UIColor.bioPay
+//        cell.bioPayRoundView.layer.cornerRadius = cell.bioPayRoundView.frame.size.height/2
+//        cell.bioPayRoundView.backgroundColor = UIColor.bioPay
+//        cell.bioPayCaption.textColor = UIColor.bioPay
         return cell
     }
     
