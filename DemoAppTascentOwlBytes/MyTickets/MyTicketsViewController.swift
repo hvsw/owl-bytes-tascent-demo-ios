@@ -110,7 +110,7 @@ class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         let title = "Your mobile ticket"
-        let message = "Present this ticket upon entry to the event."
+        let message = "Present this ticket upon entry to the event.\nBio-Payment Enabled for this event"
         let image = UIImage(ciImage: transformedImage)
         
         let popup = PopupDialog(title: title, message: message, image: image)

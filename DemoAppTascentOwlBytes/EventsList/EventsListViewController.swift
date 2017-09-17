@@ -115,11 +115,11 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     
     fileprivate func scheduleNotificationForPurchase(_ event: Event) {
         let content = UNMutableNotificationContent()
-        content.title = "Ticket bought for \(event.name)"
-        var body = "Your purchase was completed."
+        content.title = "Purchase Confirmed"
+        var body = "Ticket bought for \(event.name)"
         if let user = AppDefaults.shared.currentUser() {
             if user.optedInToBiometricPayment {
-                body += " \n Biometric Payment enabled"
+                body += "\nBiometric Payment enabled"
             }
         }
         content.body = body
