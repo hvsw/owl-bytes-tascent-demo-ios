@@ -56,6 +56,9 @@ class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableV
         cell.backgroundColor = UIColor.tascent
         cell.delegate = self
         
+        cell.bioPayRoundView.layer.cornerRadius = cell.bioPayRoundView.frame.size.height/2
+        cell.bioPayRoundView.backgroundColor = UIColor.bioPay
+        cell.bioPayCaption.textColor = UIColor.bioPay
         return cell
     }
     
@@ -107,10 +110,11 @@ class MyTicketsViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         let title = "Purchase confirmation for '\(event.name)'"
-        let message = "Present this QR Code to have access to the event"
+        let message = "Present this QR Code to have access to the event\nBio-Payment Enabled for this event"
         let image = UIImage(ciImage: transformedImage)
         
         let popup = PopupDialog(title: title, message: message, image: image)
+        
         let closeButton = CancelButton(title: "CLOSE", action: nil)
         popup.addButton(closeButton)
         

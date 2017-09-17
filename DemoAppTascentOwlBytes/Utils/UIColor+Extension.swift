@@ -10,4 +10,5 @@ import UIKit
 
 extension UIColor {
     static let tascent = UIColor(red: 38/255, green: 56/255, blue: 66/255, alpha: 100)
+    static let bioPay = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 100)
 }

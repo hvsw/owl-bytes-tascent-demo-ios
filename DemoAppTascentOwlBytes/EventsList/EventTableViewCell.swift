@@ -24,6 +24,8 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var bottomView: RoundedView!
     
     weak var delegate: EventTableViewCellDelegate?
+    @IBOutlet weak var bioPayRoundView: UIView!
+    @IBOutlet weak var bioPayCaption: UILabel!
     
     var event: Event? = nil {
         didSet {

@@ -47,6 +47,7 @@ class AppDefaults {
     
     func clear() {
         UserDefaults.standard.removeObject(forKey: "currentUser")
+        UserDefaults.standard.removeObject(forKey: "Bought")
     }
     
     func currentUser() -> User? {

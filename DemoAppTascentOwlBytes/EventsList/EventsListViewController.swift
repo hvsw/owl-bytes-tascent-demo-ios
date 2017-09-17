@@ -48,7 +48,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
             return UITableViewCell()
         }
         
-//        cell.delegate = self
+        cell.delegate = self
         cell.event = events[indexPath.row]
         cell.backgroundColor = UIColor.tascent
         
@@ -80,7 +80,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     fileprivate func userConfirmedPurchaseForEvent(_ event: Event) {
         
         guard isUserEnrolled() else {
-            showError("Please, enroll before purchasing tickets.")
+            showAlert(title: nil, message: "Please, enroll before purchasing tickets.")
             tabBarController?.selectedIndex = 2//profile tab index
             return
         }
@@ -159,6 +159,7 @@ class EventsListViewController: UIViewController, UITableViewDataSource, EventTa
     }
     
     func didTapOverlayViewOn(cell: EventTableViewCell) {
+        return
         if let evt = cell.event {
             let title = evt.name
             let message = "This event is happening and will be amazing. Don't lose this chance, buy it now with Tascent!\nTap BUY below if you want to buy a ticket to go!"

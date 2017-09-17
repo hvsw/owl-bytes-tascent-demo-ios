@@ -173,6 +173,10 @@ class ProfileViewController: UIViewController {
         user.optedInToBiometricPayment = true
         tableView.reloadSections([Sections.biometric.rawValue], with: .automatic)
     }
+    
+    @objc fileprivate func datePickerValueChanged(_ sender: AnyObject) {
+        updateUserFromFields()
+    }
 }
 
 extension ProfileViewController: UITableViewDelegate {
@@ -295,7 +299,12 @@ extension ProfileViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "picker", for: indexPath) as? DatePickerCell else {return UITableViewCell()}
                 if let date = user.dateOfBirth {
                     cell.datePicker.setDate(date, animated: false)
+                } else {
+                    if let eighteenYearsOldDate = Calendar.current.date(byAdding: .year, value: -18, to: Date()) {
+                        cell.datePicker.setDate(eighteenYearsOldDate, animated: false)
+                    }
                 }
+                cell.datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
                 return cell
             }
             guard let cellType = UserDataSection(rawValue: indexPath.row) else {return UITableViewCell()}
@@ -306,11 +315,17 @@ extension ProfileViewController: UITableViewDataSource {
                 cell.textField.placeholder = "Required"
                 cell.textField.text = user.firstName
                 cell.textField.isUserInteractionEnabled = true
+                cell.textField.returnKeyType = .next
+                cell.textField.delegate = self
+                cell.textField.tag = 0
             case .lastName:
                 cell.caption.text = "Last Name"
                 cell.textField.placeholder = "Required"
                 cell.textField.text = user.lastName
                 cell.textField.isUserInteractionEnabled = true
+                cell.textField.returnKeyType = .next
+                cell.textField.delegate = self
+                cell.textField.tag = 1
             case .dateOfBirth:
                 cell.caption.text = "DOB"
                 cell.textField.placeholder = "Date of Birth"
@@ -377,5 +392,21 @@ extension ProfileViewController: SwiftyCamViewControllerDelegate {
                 self.showError("Error checking the image! \nDetails: \(error!)")
             }
         }
+    }
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 0: //First Name text field
+            let path = IndexPath(row: UserDataSection.lastName.rawValue, section: Sections.userData.rawValue)
+            guard let cell = tableView.cellForRow(at: path) as? TextEntryTableViewCell else {break}
+            cell.textField.becomeFirstResponder()
+        case 1: //Last Name text field
+            textField.resignFirstResponder()
+            isPickerHidden = false
+        default:break
+        }
+        return true
     }
 }
