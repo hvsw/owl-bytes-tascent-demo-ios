@@ -156,6 +156,18 @@ class ProfileViewController: UIViewController {
         "\n• Receipts will be emailed to you." +
         "\n• You can Opt Out at any time."
         
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.justified
+        let messageText = NSMutableAttributedString(
+            string: message,
+            attributes: [
+                NSParagraphStyleAttributeName: paragraphStyle,
+                NSFontAttributeName : UIFont.preferredFont(forTextStyle: UIFontTextStyle.body),
+                NSForegroundColorAttributeName : UIColor.tascent
+            ]
+        )
+        
+        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let optOut = UIAlertAction(title: "Opt Out", style: .cancel) { (action) in
             self.userOptedOutOfBiometricPayment()
@@ -163,6 +175,7 @@ class ProfileViewController: UIViewController {
         let optIn = UIAlertAction(title: "Opt In", style: .default) { (action) in
             self.userOptedInToBiometricPayment()
         }
+        alert.setValue(messageText, forKey: "attributedMessage")
         alert.addAction(optIn)
         alert.addAction(optOut)
         present(alert, animated: true, completion: nil)
